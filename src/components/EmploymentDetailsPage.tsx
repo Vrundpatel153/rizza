@@ -51,22 +51,22 @@ export const EmploymentDetailsPage: React.FC = () => {
       {/* Center Main Workspace */}
       <div className="min-w-0 w-full flex flex-col gap-6">
         {/* Top Header Card with Stepper */}
-        <div className="rizza-card p-6 sm:p-7 bg-white/95 backdrop-blur-xl border border-[#ece8f7] rounded-[24px] shadow-[0_4px_24px_-2px_rgba(85,75,140,0.06)]">
+        <div className="rizza-card p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[28px] shadow-[0_8px_30px_-4px_rgba(112,66,248,0.06)]">
           {/* Header Title Row */}
           <div className="flex items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setActiveView('profile-skills')}
-                className="w-10 h-10 rounded-xl bg-[#F8F7FD] border border-[#ECE8F7] text-[#47516B] hover:text-[#5832E6] hover:bg-white flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-[#F8F7FD] border border-white/90 text-[#475569] hover:text-[#5828F0] hover:bg-white flex items-center justify-center transition-all shadow-sm"
                 title="Back to profile"
               >
                 <ArrowLeft size={18} />
               </button>
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold text-[#111625] tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight">
                   Employment details
                 </h1>
-                <p className="text-xs text-[#7E88A2] mt-0.5">
+                <p className="text-xs text-[#64748B] mt-0.5">
                   Your career journey
                 </p>
               </div>
@@ -98,26 +98,26 @@ export const EmploymentDetailsPage: React.FC = () => {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                       isActive
-                        ? 'bg-[#5832E6] text-white shadow-[0_4px_14px_rgba(88,50,230,0.35)] scale-110'
+                        ? 'bg-[#5828F0] text-white shadow-[0_4px_14px_rgba(88,40,240,0.35)] scale-110'
                         : isPast
-                        ? 'bg-[#EDE9FE] text-[#5832E6]'
-                        : 'bg-white border-2 border-[#ECE8F7] text-[#7E88A2] group-hover:border-[#D6D0F2]'
+                        ? 'bg-[#EDE9FE] text-[#5828F0]'
+                        : 'bg-white border-2 border-[#ECE8F7] text-[#64748B] group-hover:border-[#D6D0F2]'
                     }`}
                   >
                     <IconComp size={16} strokeWidth={2.2} />
                   </div>
                   <span
                     className={`text-xs font-bold mt-2 ${
-                      isActive ? 'text-[#5832E6]' : 'text-[#47516B]'
+                      isActive ? 'text-[#5828F0]' : 'text-[#475569]'
                     }`}
                   >
                     {st.name}
                   </span>
-                  <span className="text-[10px] text-[#7E88A2]">
+                  <span className="text-[10px] text-[#64748B]">
                     Step {st.num} of 6
                   </span>
                   {isActive && (
-                    <div className="w-6 h-0.5 bg-[#5832E6] rounded-full mt-1 animate-in zoom-in-50 duration-200" />
+                    <div className="w-6 h-0.5 bg-[#5828F0] rounded-full mt-1 animate-in zoom-in-50 duration-200" />
                   )}
                 </div>
               );
@@ -126,12 +126,12 @@ export const EmploymentDetailsPage: React.FC = () => {
         </div>
 
         {/* 1. Basic Information Table Card */}
-        <div className="rizza-card p-6 sm:p-7 bg-white/95 backdrop-blur-xl border border-[#ece8f7] rounded-[24px] shadow-[0_4px_24px_-2px_rgba(85,75,140,0.06)] flex flex-col gap-6">
+        <div className="rizza-card p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[28px] shadow-[0_8px_30px_-4px_rgba(112,66,248,0.06)] flex flex-col gap-6">
           <div>
-            <h2 className="text-lg font-bold text-[#111625] tracking-tight">
+            <h2 className="text-lg font-bold text-[#0F172A] tracking-tight">
               {employmentStep}. {steps[employmentStep - 1].name} information
             </h2>
-            <p className="text-xs text-[#7E88A2] mt-0.5">
+            <p className="text-xs text-[#64748B] mt-0.5">
               Tell us the essentials about this role.
             </p>
           </div>
@@ -144,22 +144,22 @@ export const EmploymentDetailsPage: React.FC = () => {
               return (
                 <div
                   key={row.key}
-                  className="py-3.5 flex items-center justify-between gap-4 hover:bg-[#FAF9FE] px-2 rounded-xl transition-colors group"
+                  className="py-3.5 flex items-center justify-between gap-4 hover:bg-[#FAF9FE] px-2 rounded-2xl transition-colors group"
                 >
-                  <div className="flex items-center gap-3 w-1/3 text-xs font-semibold text-[#47516B]">
-                    <div className="w-8 h-8 rounded-xl bg-[#F4F1FF] text-[#5832E6] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3 w-1/3 text-xs font-semibold text-[#475569]">
+                    <div className="w-8 h-8 rounded-xl bg-[#F4F1FD] text-[#5828F0] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <IconComp size={16} strokeWidth={2} />
                     </div>
                     <span>{row.label}</span>
                   </div>
 
-                  <div className="flex-1 text-sm font-bold text-[#111625] truncate">
+                  <div className="flex-1 text-sm font-bold text-[#0F172A] truncate">
                     {val}
                   </div>
 
                   <button
                     onClick={() => openEditFieldModal(row.key, row.label)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-[#5832E6] hover:text-[#4314cc] px-2.5 py-1 rounded-lg hover:bg-[#F4F1FF] transition-all"
+                    className="flex items-center gap-1.5 text-xs font-bold text-[#5828F0] hover:text-[#4314cc] px-2.5 py-1 rounded-lg hover:bg-[#F4F1FD] transition-all"
                   >
                     <span>Edit</span>
                     <Edit3 size={13} />
@@ -173,7 +173,8 @@ export const EmploymentDetailsPage: React.FC = () => {
           <div className="pt-4 border-t border-[#F4F2FA]">
             <button
               onClick={handleContinue}
-              className="w-full btn-primary py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+              style={{ background: 'linear-gradient(135deg, #5828F0 0%, #461AD9 100%)' }}
+              className="w-full text-white py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(88,40,240,0.35)] hover:brightness-105 active:scale-95 transition-all"
             >
               <span>{employmentStep === 6 ? 'Finish & Save to Profile' : 'Continue'}</span>
               <ArrowRight size={17} />
@@ -185,13 +186,13 @@ export const EmploymentDetailsPage: React.FC = () => {
       {/* Right Column Contextual Rail */}
       <div className="w-full xl:w-[440px] flex-shrink-0 flex flex-col gap-6">
         {/* Make Your Experience Stand Out Card with 3D Illustration */}
-        <div className="rizza-card p-6 bg-white/95 backdrop-blur-xl border border-[#ece8f7] rounded-[24px] shadow-[0_4px_24px_-2px_rgba(85,75,140,0.06)] relative overflow-hidden">
+        <div className="rizza-card p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[28px] shadow-[0_8px_30px_-4px_rgba(112,66,248,0.06)] relative overflow-hidden">
           <div className="flex items-start justify-between gap-4 mb-5">
             <div className="max-w-[70%]">
-              <h3 className="text-base font-bold text-[#111625] leading-snug">
-                Make your experience <span className="text-[#5832E6]">stand out</span>
+              <h3 className="text-base font-bold text-[#0F172A] leading-snug">
+                Make your experience <span className="text-[#5828F0]">stand out</span>
               </h3>
-              <p className="text-xs text-[#7E88A2] mt-1 leading-relaxed">
+              <p className="text-xs text-[#64748B] mt-1 leading-relaxed">
                 Adding detailed and accurate information helps others understand your journey and discover opportunities.
               </p>
             </div>
@@ -201,50 +202,50 @@ export const EmploymentDetailsPage: React.FC = () => {
               <img
                 src="/assets/employment-3d-graphic.png"
                 alt=""
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain mix-blend-multiply"
               />
             </div>
           </div>
 
           {/* Guidance Cards List */}
           <div className="flex flex-col gap-3">
-            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-[#ECE8F7] flex items-start gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5832E6] flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-white/90 flex items-start gap-3">
+              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Lightbulb size={14} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[#111625]">Be clear and specific</h4>
-                <p className="text-[11px] text-[#7E88A2] mt-0.5">Use your actual job title, company name and time period.</p>
+                <h4 className="text-xs font-bold text-[#0F172A]">Be clear and specific</h4>
+                <p className="text-[11px] text-[#64748B] mt-0.5">Use your actual job title, company name and time period.</p>
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-[#ECE8F7] flex items-start gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5832E6] flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-white/90 flex items-start gap-3">
+              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Users size={14} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[#111625]">Highlight your context</h4>
-                <p className="text-[11px] text-[#7E88A2] mt-0.5">Mention team size, reporting manager and work setup.</p>
+                <h4 className="text-xs font-bold text-[#0F172A]">Highlight your context</h4>
+                <p className="text-[11px] text-[#64748B] mt-0.5">Mention team size, reporting manager and work setup.</p>
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-[#ECE8F7] flex items-start gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5832E6] flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="p-3.5 rounded-2xl bg-[#F8F7FD] border border-white/90 flex items-start gap-3">
+              <div className="w-7 h-7 rounded-lg bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Clock size={14} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[#111625]">Keep it up to date</h4>
-                <p className="text-[11px] text-[#7E88A2] mt-0.5">An updated profile helps you get better opportunities.</p>
+                <h4 className="text-xs font-bold text-[#0F172A]">Keep it up to date</h4>
+                <p className="text-[11px] text-[#64748B] mt-0.5">An updated profile helps you get better opportunities.</p>
               </div>
             </div>
           </div>
 
           {/* Quote */}
           <div className="mt-5 pt-4 border-t border-[#F5F3FB] flex items-start gap-2.5">
-            <span className="text-xl font-serif text-[#5832E6] leading-none font-bold select-none">
+            <span className="text-2xl font-serif text-[#5828F0] leading-none font-bold select-none">
               “
             </span>
-            <p className="text-xs italic text-[#47516B] leading-relaxed">
+            <p className="text-xs italic text-[#475569] leading-relaxed">
               "Your career journey is a story of growth, impact and learning. Keep building it."
             </p>
           </div>

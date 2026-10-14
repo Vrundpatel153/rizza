@@ -78,21 +78,21 @@ export const ProjectsTabContent: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col gap-6">
-      {/* Featured Work Header & Filter Pills */}
-      <div className="rizza-card p-6 sm:p-7 bg-white/95 backdrop-blur-xl border border-[#ece8f7] rounded-[24px] shadow-[0_4px_24px_-2px_rgba(85,75,140,0.06)]">
+      {/* Featured Work Container */}
+      <div className="rizza-card p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[28px] shadow-[0_8px_30px_-4px_rgba(112,66,248,0.06)]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
           <div>
-            <h2 className="text-xl font-bold text-[#111625] tracking-tight">
+            <h2 className="text-xl font-bold text-[#0F172A] tracking-tight">
               Featured work
             </h2>
-            <p className="text-sm text-[#7E88A2] mt-0.5">
+            <p className="text-sm text-[#64748B] mt-0.5">
               A selection of my recent projects and case studies.
             </p>
           </div>
 
           <button
             onClick={() => showToast('Viewing full project portfolio archive')}
-            className="text-xs font-semibold text-[#5832E6] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
+            className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
           >
             <span>View all projects</span>
             <ArrowRight size={13} />
@@ -107,11 +107,11 @@ export const ProjectsTabContent: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                style={isActive ? { backgroundColor: '#4F17EA', color: '#FFFFFF', boxShadow: '0 4px 12px rgba(79, 23, 234, 0.35)' } : {}}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
+                style={isActive ? { backgroundColor: '#5828F0', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(88, 40, 240, 0.35)' } : {}}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap active:scale-95 ${
                   isActive
                     ? 'scale-[1.02]'
-                    : 'bg-[#F4F2FC] text-[#47516B] border border-[#EDE9F8] hover:bg-[#EAE5FA] hover:text-[#5832E6]'
+                    : 'bg-[#F4F1FD] text-[#64748B] border border-[#DDD6FE] hover:bg-[#EDE9FE] hover:text-[#5828F0]'
                 }`}
               >
                 {cat.label}
@@ -126,39 +126,39 @@ export const ProjectsTabContent: React.FC = () => {
             <div
               key={proj.id}
               onClick={() => showToast(`Opening project: ${proj.title}`)}
-              className="group bg-white rounded-2xl p-3 border border-[#ECE8F7] shadow-[0_4px_20px_-2px_rgba(85,75,140,0.05)] hover:shadow-[0_12px_28px_-4px_rgba(88,50,230,0.15)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group bg-white/95 rounded-[22px] p-3 border border-white/90 shadow-[0_4px_18px_rgba(85,75,140,0.06)] hover:shadow-[0_12px_32px_-4px_rgba(88,40,240,0.16)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Mockup Container */}
-                <div className="relative rounded-xl overflow-hidden aspect-[16/10] bg-[#F2F0FA]">
+                <div className="relative rounded-[16px] overflow-hidden aspect-[16/10] bg-[#F2F0FA]">
                   <img
                     src={proj.image}
                     alt={proj.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* External Link Floating Button */}
-                  <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-lg bg-black/40 backdrop-blur-md text-white flex items-center justify-center transition-all group-hover:bg-[#4F17EA] group-hover:scale-110">
-                    <ExternalLink size={14} />
+                  <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-lg bg-black/40 backdrop-blur-md text-white flex items-center justify-center transition-all group-hover:bg-[#5828F0] group-hover:scale-110">
+                    <ExternalLink size={13} />
                   </div>
                 </div>
 
                 {/* Title & Subtitle */}
                 <div className="mt-3">
-                  <h3 className="text-sm font-bold text-[#111625] group-hover:text-[#5832E6] transition-colors">
+                  <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#5828F0] transition-colors">
                     {proj.title}
                   </h3>
-                  <p className="text-xs text-[#7E88A2] mt-0.5">
+                  <p className="text-xs text-[#64748B] mt-0.5">
                     {proj.subtitle}
                   </p>
                 </div>
               </div>
 
               {/* Tag Pills */}
-              <div className="flex items-center gap-1.5 flex-wrap mt-3 pt-2 border-t border-[#F5F3FB]">
+              <div className="flex items-center gap-1.5 flex-wrap mt-3 pt-2.5 border-t border-[#F5F3FB]">
                 {proj.tags.map((t, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#F4F2FC] text-[#6B7280]"
+                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#F4F1FD] text-[#5828F0] border border-[#E9E3FC]"
                   >
                     {t}
                   </span>

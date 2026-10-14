@@ -50,7 +50,7 @@ export const AssessmentMCQPage: React.FC = () => {
               <img
                 src="/assets/assessment-mcq-illustration.png"
                 alt=""
-                className="w-full h-full object-contain object-right-top"
+                className="w-full h-full object-contain object-right-top mix-blend-multiply"
               />
             </div>
           </div>

@@ -57,7 +57,7 @@ export const AssessmentSubjectivePage: React.FC = () => {
               <img
                 src="/assets/assessment-subj-illustration.png"
                 alt=""
-                className="w-full h-full object-contain object-right-top"
+                className="w-full h-full object-contain object-right-top mix-blend-multiply"
               />
             </div>
           </div>
