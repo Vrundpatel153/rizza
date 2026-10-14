@@ -80,10 +80,10 @@ export const SkillsTabContent: React.FC = () => {
                   </div>
 
                   {/* Progress Track */}
-                  <div className="w-full h-2 bg-[#F0EDFB] rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-[#EBE7F7] rounded-full overflow-hidden mt-1.5">
                     <div
-                      className="h-full bg-gradient-to-r from-[#5832E6] to-[#431ECB] rounded-full transition-all duration-1000 ease-out shadow-[0_0_8px_rgba(88,50,230,0.3)]"
-                      style={{ width: `${s.percentage}%` }}
+                      className="h-full rounded-full transition-all duration-1000 ease-out"
+                      style={{ width: `${s.percentage}%`, backgroundColor: '#4F17EA' }}
                     />
                   </div>
                 </div>

@@ -116,10 +116,11 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
 
                 {/* Connect Button */}
                 <button
+                  style={!isConnected ? { backgroundColor: '#4F17EA', color: '#FFFFFF', boxShadow: '0 4px 16px rgba(79, 23, 234, 0.35)' } : {}}
                   className={`px-6 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
                     isConnected
                       ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm'
-                      : 'bg-gradient-to-r from-[#5832E6] to-[#431ECB] text-white shadow-[0_4px_16px_rgba(88,50,230,0.35)] hover:shadow-[0_6px_22px_rgba(88,50,230,0.45)] hover:scale-[1.02] active:scale-[0.98]'
+                      : 'hover:opacity-95 hover:scale-[1.02] active:scale-[0.98]'
                   }`}
                   onClick={toggleConnect}
                 >
@@ -174,17 +175,18 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
           return (
-            <button
-              key={tab.key}
-              onClick={() => handleTabClick(tab.key)}
-              className={`px-5 py-2 rounded-full text-[13.5px] font-medium transition-all whitespace-nowrap ${
-                isActive
-                  ? 'bg-[#4F17EA] text-white font-semibold shadow-[0_4px_14px_rgba(79,23,234,0.32)] scale-[1.02]'
-                  : 'text-[#47516B] hover:text-[#111625] hover:bg-white/80 active:scale-95'
-              }`}
-            >
-              {tab.label}
-            </button>
+              <button
+                key={tab.key}
+                onClick={() => handleTabClick(tab.key)}
+                style={isActive ? { backgroundColor: '#4F17EA', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(79, 23, 234, 0.35)' } : {}}
+                className={`px-6 py-2 rounded-full text-[13.5px] transition-all whitespace-nowrap ${
+                  isActive
+                    ? 'font-semibold scale-[1.02]'
+                    : 'text-[#47516B] hover:text-[#111625] hover:bg-white/80 active:scale-95 font-medium'
+                }`}
+              >
+                {tab.label}
+              </button>
           );
         })}
       </div>

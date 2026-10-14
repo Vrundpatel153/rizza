@@ -107,9 +107,10 @@ export const ProjectsTabContent: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
+                style={isActive ? { backgroundColor: '#4F17EA', color: '#FFFFFF', boxShadow: '0 4px 12px rgba(79, 23, 234, 0.35)' } : {}}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                   isActive
-                    ? 'bg-[#4F17EA] text-white shadow-[0_4px_12px_rgba(79,23,234,0.3)] scale-[1.02]'
+                    ? 'scale-[1.02]'
                     : 'bg-[#F4F2FC] text-[#47516B] border border-[#EDE9F8] hover:bg-[#EAE5FA] hover:text-[#5832E6]'
                 }`}
               >
