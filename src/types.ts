@@ -4,6 +4,13 @@ export type ActiveView =
   | 'assessment-mcq'
   | 'assessment-subjective'
   | 'employment-details'
+  | 'jobs'
+  | 'network'
+  | 'assessment-hub'
+  | 'score-benchmark'
+  | 'digital-vault'
+  | 'messages'
+  | 'notifications'
   | 'login';
 
 export type ProfileTab = 'overview' | 'skills' | 'experience' | 'projects' | 'posts' | 'activity';

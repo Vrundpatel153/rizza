@@ -6,6 +6,13 @@ import { ProfilePage } from './components/ProfilePage';
 import { AssessmentMCQPage } from './components/AssessmentMCQPage';
 import { AssessmentSubjectivePage } from './components/AssessmentSubjectivePage';
 import { EmploymentDetailsPage } from './components/EmploymentDetailsPage';
+import { JobsPage } from './components/JobsPage';
+import { AssessmentHubPage } from './components/AssessmentHubPage';
+import { ScoreBenchmarkPage } from './components/ScoreBenchmarkPage';
+import { DigitalVaultPage } from './components/DigitalVaultPage';
+import { NetworkPage } from './components/NetworkPage';
+import { MessagesPage } from './components/MessagesPage';
+import { NotificationsPage } from './components/NotificationsPage';
 import { LoginPage } from './components/LoginPage';
 import { EditFieldModal } from './components/EditFieldModal';
 import { UpgradeModal } from './components/UpgradeModal';
@@ -60,6 +67,13 @@ const MainAppLayout: React.FC = () => {
             {activeView === 'assessment-mcq' && <AssessmentMCQPage />}
             {activeView === 'assessment-subjective' && <AssessmentSubjectivePage />}
             {activeView === 'employment-details' && <EmploymentDetailsPage />}
+            {activeView === 'jobs' && <JobsPage />}
+            {activeView === 'assessment-hub' && <AssessmentHubPage />}
+            {activeView === 'score-benchmark' && <ScoreBenchmarkPage />}
+            {activeView === 'digital-vault' && <DigitalVaultPage />}
+            {activeView === 'network' && <NetworkPage />}
+            {activeView === 'messages' && <MessagesPage />}
+            {activeView === 'notifications' && <NotificationsPage />}
           </div>
         </div>
       </main>

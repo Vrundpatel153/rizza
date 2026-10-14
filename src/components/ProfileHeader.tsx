@@ -46,40 +46,35 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
   return (
     <div className="w-full flex flex-col gap-3.5">
       {/* Main Hero Card */}
-      <div className="p-6 relative overflow-hidden bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_35px_rgba(110,80,190,0.06)]">
-        {/* Seamless 3D Fluid Violet Wave Ribbon in Top-Right Quadrant */}
-        <div className="absolute top-0 right-0 w-[580px] h-[210px] pointer-events-none select-none overflow-hidden">
-          <svg className="w-full h-full" viewBox="0 0 580 210" fill="none" preserveAspectRatio="none">
+      <div className="p-6 relative overflow-hidden bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
+        {/* Seamless 3D Fluid Violet Wave Ribbon in Bottom-Right Quadrant (as in reference) */}
+        <div className="absolute bottom-0 right-0 w-[500px] h-[130px] pointer-events-none select-none overflow-hidden z-0 hidden sm:block">
+          <svg className="w-full h-full" viewBox="0 0 500 130" fill="none" preserveAspectRatio="none">
             <defs>
               <linearGradient id="heroWaveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#C4B5FD" stopOpacity="0.45" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#5828F0" stopOpacity="0.12" />
+                <stop offset="60%" stopColor="#8B5CF6" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#5828F0" stopOpacity="0.18" />
               </linearGradient>
               <linearGradient id="heroWaveGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#DDD6FE" stopOpacity="0.5" />
+                <stop offset="0%" stopColor="#DDD6FE" stopOpacity="0.4" />
                 <stop offset="60%" stopColor="#C4B5FD" stopOpacity="0.2" />
                 <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
               </linearGradient>
-              <radialGradient id="heroGlow" cx="80%" cy="30%" r="60%">
-                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.18" />
-                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-              </radialGradient>
             </defs>
-            <rect width="100%" height="100%" fill="url(#heroGlow)" />
             {/* Smooth Ribbon 1 */}
             <path
-              d="M580,0 C440,30 360,95 240,80 C140,65 60,130 0,145 L0,0 Z"
+              d="M500,70 C380,20 280,110 120,80 C60,65 20,90 0,110 L0,130 L500,130 Z"
               fill="url(#heroWaveGrad2)"
             />
             {/* Smooth Ribbon 2 with depth */}
             <path
-              d="M580,25 C460,70 380,140 220,110 C130,95 40,165 0,175 L0,210 L580,210 Z"
+              d="M500,45 C360,75 260,30 140,95 C70,120 20,110 0,125 L0,130 L500,130 Z"
               fill="url(#heroWaveGrad1)"
             />
             {/* Fine curved accent line */}
             <path
-              d="M580,45 C420,90 320,150 160,115 C90,100 20,170 0,180"
+              d="M500,40 C350,70 250,25 130,90 C60,115 15,105 0,120"
               stroke="#8B5CF6"
               strokeWidth="1.2"
               strokeOpacity="0.35"
@@ -88,17 +83,17 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
           </svg>
         </div>
 
-        <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
+        <div className="relative z-10 flex flex-col md:flex-row gap-5 sm:gap-6 items-start">
           {/* Left: Annie's Portrait Card */}
-          <div className="flex-shrink-0 relative group">
-            <div className="w-[172px] h-[172px] rounded-[22px] overflow-hidden relative border-2 border-white shadow-md bg-[#F0EEF8]">
+          <div className="flex-shrink-0 relative group self-center sm:self-start">
+            <div className="w-[140px] h-[140px] sm:w-[165px] sm:h-[165px] rounded-[22px] overflow-hidden relative border-2 border-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] bg-[#F0EEF8]">
               <img
                 src="/assets/annie-portrait.png"
                 alt="Annie Stanley"
                 className="w-full h-full object-cover object-top"
               />
               {/* Green Available for opportunities pill */}
-              <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-slate-100 shadow-sm flex items-center gap-1.5 text-[11px] font-medium text-[#027A48]">
+              <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-[#EAE5F5] shadow-sm flex items-center gap-1.5 text-[11px] font-semibold text-[#027A48]">
                 <span className="w-2 h-2 rounded-full bg-[#12B76A] animate-pulse" />
                 <span>Available for opportunities</span>
               </div>
@@ -108,10 +103,10 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
           {/* Right: Info Area */}
           <div className="flex-1 min-w-0 w-full flex flex-col justify-between pt-0.5">
             {/* Top Identity & Action Buttons Row */}
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-[26px] font-bold text-[#0F172A] tracking-tight leading-none">
+                  <h1 className="text-2xl sm:text-[26px] font-bold text-[#0F172A] tracking-tight leading-none">
                     Annie Stanley
                   </h1>
                   {/* Verified Rosette Badge */}
@@ -128,37 +123,37 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
               </div>
 
               {/* Action Buttons: Share, More, Connect */}
-              <div className="flex items-center gap-2 flex-shrink-0 relative z-20">
+              <div className="flex items-center gap-2 flex-shrink-0 relative z-20 self-start sm:self-auto">
                 {/* Share Button */}
                 <button
-                  className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 hover:bg-white hover:shadow transition-all"
+                  className="w-9 h-9 rounded-full bg-white border border-[#EAE5F5] shadow-sm flex items-center justify-center text-[#475569] hover:text-[#5828F0] hover:border-[#D6D0F2] transition-all"
                   title="Share Profile"
                   onClick={handleShare}
                 >
-                  {copied ? <Check size={18} className="text-emerald-600" /> : <Share2 size={18} />}
+                  {copied ? <Check size={16} className="text-emerald-600" /> : <Share2 size={16} />}
                 </button>
 
                 {/* More Options */}
                 <button
-                  className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 hover:bg-white hover:shadow transition-all"
+                  className="w-9 h-9 rounded-full bg-white border border-[#EAE5F5] shadow-sm flex items-center justify-center text-[#475569] hover:text-[#5828F0] hover:border-[#D6D0F2] transition-all"
                   title="More Options"
                   onClick={() => showToast('Profile options: export PDF, report, or share')}
                 >
-                  <MoreHorizontal size={18} />
+                  <MoreHorizontal size={16} />
                 </button>
 
                 {/* Connect Button */}
                 <button
                   onClick={toggleConnect}
-                  className={`px-6 py-2 rounded-2xl text-[13.5px] font-semibold transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
+                  className={`px-6 py-2 rounded-full text-[13.5px] font-semibold transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
                     isConnected
                       ? 'bg-emerald-50 text-emerald-700 border border-emerald-300 shadow-sm'
-                      : 'btn-primary-gradient shadow-[0_8px_20px_rgba(88,40,240,0.45)]'
+                      : 'btn-primary-purple'
                   }`}
                 >
                   {isConnected ? (
                     <>
-                      <Check size={16} strokeWidth={2.5} />
+                      <Check size={15} strokeWidth={2.5} />
                       <span>Connected</span>
                     </>
                   ) : (
@@ -204,7 +199,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
       </div>
 
       {/* Profile Navigation Tabs (Matching Reference Image) */}
-      <div className="flex items-center gap-1.5 py-1 select-none">
+      <div className="flex items-center gap-1 py-1 select-none overflow-x-auto no-scrollbar">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
           return (
@@ -213,8 +208,8 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ activeTab, onTabCh
               onClick={() => handleTabClick(tab.key)}
               className={`text-[13.5px] transition-all whitespace-nowrap cursor-pointer ${
                 isActive
-                  ? 'px-7 py-2 rounded-full font-semibold pill-primary-gradient'
-                  : 'px-5 py-2 rounded-full font-medium text-[#475467] hover:text-[#0F172A] hover:bg-white/60'
+                  ? 'px-4 py-1.5 rounded-full font-semibold pill-active-purple'
+                  : 'px-3.5 py-1.5 rounded-full font-medium text-[#64748B] hover:text-[#0F172A] hover:bg-white/80'
               }`}
             >
               {tab.label}

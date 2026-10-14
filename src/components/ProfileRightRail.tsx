@@ -25,15 +25,15 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
     <div className="w-full flex flex-col gap-4">
       {variant === 'skills' ? (
         <>
-          {/* My Journey Card */}
-          <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+          {/* My Journey Card matching reference */}
+          <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight">
+              <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
                 My journey
               </h3>
               <button
                 onClick={() => setActiveView('employment-details')}
-                className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 cursor-pointer"
               >
                 <span>View timeline</span>
                 <ArrowRight size={12} />
@@ -41,7 +41,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
             </div>
 
             {/* Timeline Milestones with connecting line */}
-            <div className="relative flex flex-col gap-3.5 before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[1.5px] before:bg-[#E9E5F5]">
+            <div className="relative flex flex-col gap-3.5 before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[1.5px] before:bg-[#EAE5F5]">
               {/* Figma */}
               <div
                 onClick={() => setActiveView('employment-details')}
@@ -118,10 +118,10 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
             </div>
           </div>
 
-          {/* Featured Work Mini Cards */}
-          <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+          {/* Featured Work Mini Cards matching reference */}
+          <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight">
+              <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
                 Featured work
               </h3>
               <button
@@ -129,7 +129,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
                   setActiveProfileTab('projects');
                   setActiveView('profile-projects');
                 }}
-                className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 cursor-pointer"
               >
                 <span>View all projects</span>
                 <ArrowRight size={12} />
@@ -215,30 +215,30 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
         /* PROJECTS VARIANT */
         <>
           {/* Project Highlights Stats */}
-          <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
-            <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight mb-4">
+          <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
+            <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight mb-4">
               Project highlights
             </h3>
             <div className="grid grid-cols-3 gap-3 text-center">
-              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-white/90">
-                <div className="text-[18px] font-bold text-[#5828F0]">12+</div>
-                <div className="text-[11px] text-[#64748B] mt-0.5">Projects</div>
+              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-[#ECE7F8]">
+                <div className="text-[20px] font-bold text-[#5828F0]">12+</div>
+                <div className="text-[11px] font-medium text-[#64748B] mt-0.5">Projects</div>
               </div>
-              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-white/90">
-                <div className="text-[18px] font-bold text-[#5828F0]">50K+</div>
-                <div className="text-[11px] text-[#64748B] mt-0.5">Users Impacted</div>
+              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-[#ECE7F8]">
+                <div className="text-[20px] font-bold text-[#5828F0]">50K+</div>
+                <div className="text-[11px] font-medium text-[#64748B] mt-0.5">Users Impacted</div>
               </div>
-              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-white/90">
-                <div className="text-[18px] font-bold text-[#5828F0]">3</div>
-                <div className="text-[11px] text-[#64748B] mt-0.5">Featured</div>
+              <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-[#ECE7F8]">
+                <div className="text-[20px] font-bold text-[#5828F0]">3</div>
+                <div className="text-[11px] font-medium text-[#64748B] mt-0.5">Featured</div>
               </div>
             </div>
           </div>
 
           {/* Tools & Technologies */}
-          <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+          <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
             <div className="flex items-center justify-between mb-3.5">
-              <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight">
+              <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
                 Tools & technologies
               </h3>
               <button
@@ -251,7 +251,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
 
             <div className="grid grid-cols-2 gap-2">
               {[
-                { name: 'Figma', icon: '❖', color: 'text-purple-600 bg-purple-50' },
+                { name: 'Figma', icon: '❖', color: 'text-[#5828F0] bg-[#EDE9FE]' },
                 { name: 'Notion', icon: 'N', color: 'text-slate-800 bg-slate-100' },
                 { name: 'Adobe XD', icon: 'Xd', color: 'text-pink-600 bg-pink-50' },
                 { name: 'Photoshop', icon: 'Ps', color: 'text-blue-600 bg-blue-50' },
@@ -260,7 +260,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
               ].map((tool, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 p-2 rounded-xl bg-[#F8F7FD] border border-white/90 hover:bg-[#F3EFFC] transition-colors"
+                  className="flex items-center gap-2.5 p-2 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] hover:bg-[#F3EFFC] transition-colors"
                 >
                   <div className={`w-6 h-6 rounded-md ${tool.color} flex items-center justify-center font-bold text-xs`}>
                     {tool.icon}
@@ -274,8 +274,8 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
           </div>
 
           {/* What I Enjoy Working On */}
-          <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
-            <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight mb-3.5">
+          <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
+            <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight mb-3.5">
               What I enjoy working on
             </h3>
             <div className="grid grid-cols-4 gap-2 text-center">
@@ -289,7 +289,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
                 return (
                   <div
                     key={idx}
-                    className="p-2 rounded-xl bg-[#F8F7FD] border border-white/90 flex flex-col items-center justify-center group hover:bg-[#F3EFFC] transition-colors"
+                    className="p-2 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] flex flex-col items-center justify-center group hover:bg-[#F3EFFC] transition-colors"
                   >
                     <div className="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-[#5828F0] mb-1 group-hover:scale-110 transition-transform">
                       <IconComp size={15} />
@@ -304,7 +304,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
           </div>
 
           {/* Steve Jobs Quote Card for Projects Tab */}
-          <div className="p-5 sm:p-6 relative overflow-hidden bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex items-center justify-between">
+          <div className="p-6 relative overflow-hidden bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex items-center justify-between">
             <div className="relative z-10 max-w-[80%] flex items-start gap-2.5">
               <span className="text-2xl font-serif text-[#5828F0] leading-none font-bold select-none mt-0.5">
                 “
@@ -331,19 +331,19 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
       )}
 
       {/* Let's Connect Card (Shared by both variants) */}
-      <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex flex-col gap-3.5">
+      <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex flex-col gap-4">
         <div>
-          <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight">
+          <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
             Let's connect
           </h3>
-          <p className="text-xs text-[#64748B] mt-0.5 leading-relaxed">
+          <p className="text-xs text-[#64748B] mt-1 leading-relaxed">
             I'm always open to interesting conversations and new opportunities.
           </p>
         </div>
 
         {/* Contact Info Rows */}
-        <div className="flex flex-col gap-2 text-xs text-[#475569]">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-2.5 text-xs text-[#475569]">
+          <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded-md bg-[#F4F1FD] text-[#5828F0] flex items-center justify-center flex-shrink-0">
               <Mail size={13} />
             </div>
@@ -352,7 +352,7 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
             </a>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded-md bg-[#F4F1FD] text-[#5828F0] flex items-center justify-center flex-shrink-0">
               <MapPin size={13} />
             </div>
@@ -361,14 +361,14 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
         </div>
 
         {/* Social Icons Row */}
-        <div className="flex items-center gap-2 pt-0.5">
+        <div className="flex items-center gap-2">
           {/* LinkedIn */}
           <button
             onClick={() => showToast('Opening LinkedIn')}
-            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-white/90 text-[#475569] hover:text-[#0A66C2] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-110 active:scale-95 shadow-sm"
+            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] text-[#475569] hover:text-[#0A66C2] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-105 active:scale-95 shadow-sm"
             title="LinkedIn"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.79v8.37H6.46v-8.37M7.86 6.3a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z" />
             </svg>
           </button>
@@ -376,16 +376,16 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
           {/* Website / Globe */}
           <button
             onClick={() => showToast('Opening Portfolio Website')}
-            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-white/90 text-[#475569] hover:text-[#5828F0] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-110 active:scale-95 shadow-sm"
+            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] text-[#475569] hover:text-[#5828F0] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-105 active:scale-95 shadow-sm"
             title="Website"
           >
-            <Globe size={15} />
+            <Globe size={14} />
           </button>
 
           {/* Behance */}
           <button
             onClick={() => showToast('Opening Behance Profile')}
-            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-white/90 text-[#475569] hover:text-[#1769FF] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-110 active:scale-95 shadow-sm font-bold text-xs"
+            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] text-[#475569] hover:text-[#1769FF] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-105 active:scale-95 shadow-sm font-bold text-xs"
             title="Behance"
           >
             Bē
@@ -394,10 +394,10 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
           {/* Instagram */}
           <button
             onClick={() => showToast('Opening Instagram')}
-            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-white/90 text-[#475569] hover:text-[#E4405F] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-110 active:scale-95 shadow-sm"
+            className="w-8 h-8 rounded-xl bg-[#F8F7FD] border border-[#ECE7F8] text-[#475569] hover:text-[#E4405F] flex items-center justify-center transition-all hover:bg-white hover:border-[#D6D0F2] hover:scale-105 active:scale-95 shadow-sm"
             title="Instagram"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
               <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
@@ -406,17 +406,17 @@ export const ProfileRightRail: React.FC<ProfileRightRailProps> = ({ variant }) =
         </div>
 
         {/* Share My Profile Box */}
-        <div className="p-3 rounded-2xl bg-[#F8F7FD] border border-white/90 flex flex-col gap-1.5 mt-0.5">
-          <span className="text-xs font-semibold text-[#0F172A]">Share my profile</span>
-          <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-full bg-white border border-[#ECE8F7] shadow-sm">
-            <div className="flex items-center gap-1.5 text-xs text-[#5828F0] font-medium truncate">
-              <span>🔗</span>
+        <div className="flex flex-col gap-1.5 pt-1">
+          <span className="text-[12px] font-bold text-[#0F172A]">Share my profile</span>
+          <div className="flex items-center justify-between gap-2 px-3.5 py-2 rounded-full bg-[#F8F6FE] border border-[#ECE7F8]">
+            <div className="flex items-center gap-2 text-xs text-[#5828F0] font-medium truncate">
+              <span className="text-xs">🔗</span>
               <span className="truncate">rizza.life/anniestanley</span>
             </div>
             <button
               onClick={handleCopyLink}
               title="Copy Profile Link"
-              className="p-1 rounded-md text-[#64748B] hover:text-[#5828F0] hover:bg-[#F4F1FD] transition-all flex-shrink-0"
+              className="p-1 rounded-md text-[#64748B] hover:text-[#5828F0] transition-colors flex-shrink-0"
             >
               {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
             </button>

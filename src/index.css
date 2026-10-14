@@ -9,11 +9,11 @@
   --primary-border: #E2DAFC;
   --primary-pill-bg: #F4F1FF;
 
-  --bg-page: #F6F5FD;
-  --bg-card: rgba(255, 255, 255, 0.86);
+  --bg-page: #EDE9F7;
+  --bg-card: #FFFFFF;
   --bg-card-solid: #FFFFFF;
-  --bg-pill: #F3F2F9;
-  --bg-pill-hover: #ECE9F6;
+  --bg-pill: #F4F3F8;
+  --bg-pill-hover: #EBE9F5;
   --bg-subtle: #FAF9FE;
 
   --text-main: #0F172A;
@@ -21,16 +21,16 @@
   --text-muted: #64748B;
   --text-subtle: #94A3B8;
 
-  --border-card: rgba(255, 255, 255, 0.95);
-  --border-light: rgba(238, 235, 250, 0.9);
+  --border-card: #E2DBF2;
+  --border-light: #E7E0F5;
 
   --shadow-sm: 0 2px 8px rgba(90, 80, 140, 0.04);
-  --shadow-card: 0 8px 30px -4px rgba(112, 66, 248, 0.06), 0 2px 8px -2px rgba(0, 0, 0, 0.02);
+  --shadow-card: 0 4px 20px -2px rgba(100, 70, 190, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-float: 0 16px 40px -8px rgba(88, 40, 240, 0.18);
   --shadow-purple-glow: 0 4px 18px rgba(88, 40, 240, 0.35);
 
-  --radius-xxl: 24px;
-  --radius-xl: 18px;
+  --radius-xxl: 26px;
+  --radius-xl: 20px;
   --radius-lg: 14px;
   --radius-md: 10px;
   --radius-sm: 8px;
@@ -79,7 +79,6 @@ button, input, textarea, select {
 button {
   cursor: pointer;
   border: none;
-  background: none;
   outline: none;
   user-select: none;
 }
@@ -95,31 +94,25 @@ a {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: 
-    url('/assets/ambient-bg-canvas.jpg'),
-    radial-gradient(circle at 8% 85%, rgba(216, 180, 254, 0.45) 0%, transparent 45%),
-    radial-gradient(circle at 92% 15%, rgba(196, 181, 253, 0.35) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(243, 232, 255, 0.25) 0%, transparent 60%);
-  background-size: cover, auto, auto, auto;
-  background-position: center, center, center, center;
-  background-repeat: no-repeat;
-  opacity: 0.95;
+  background: 
+    radial-gradient(circle at 12% 10%, rgba(216, 180, 254, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 88% 20%, rgba(196, 181, 253, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 50% 60%, rgba(237, 233, 254, 0.3) 0%, transparent 60%),
+    #EDE9F7;
 }
 
-/* Base Glassmorphic Card */
-.rizza-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-xxl);
-  box-shadow: var(--shadow-card);
+/* Base Solid Crisp White Card */
+.rizza-card, .white-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2DBF2 !important;
+  border-radius: 26px !important;
+  box-shadow: 0 4px 20px -2px rgba(100, 70, 190, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
   position: relative;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.rizza-card:hover {
-  box-shadow: 0 10px 36px -4px rgba(112, 66, 248, 0.09);
+.rizza-card:hover, .white-card:hover {
+  box-shadow: 0 8px 30px -4px rgba(100, 70, 190, 0.12), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
 }
 
 /* Primary Button */
@@ -291,6 +284,24 @@ a {
 }
 
 /* Explicit Bulletproof Gradient and Active State Utilities */
+.btn-primary-purple {
+  background: #5828F0 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(88, 40, 240, 0.35) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-primary-purple:hover {
+  background: #4718DD !important;
+  box-shadow: 0 6px 20px rgba(88, 40, 240, 0.45) !important;
+}
+
+.pill-active-purple {
+  background: #5828F0 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(88, 40, 240, 0.3) !important;
+}
+
 .btn-primary-gradient {
   background: linear-gradient(135deg, #5828F0 0%, #461AD9 100%) !important;
   color: #FFFFFF !important;

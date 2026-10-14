@@ -69,79 +69,79 @@ export const Navbar: React.FC = () => {
         </form>
 
         {/* Right Navigation & Profile */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Home */}
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Home (Desktop only) */}
           <button
             onClick={() => {
               setActiveProfileTab('skills');
               setActiveView('profile-skills');
             }}
-            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
+            className="hidden md:flex w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 items-center justify-center transition-all cursor-pointer"
             title="Home"
           >
             <Home size={19} strokeWidth={1.8} />
           </button>
 
-          {/* My Network */}
+          {/* My Network (Desktop only) */}
           <button
-            onClick={() => showToast('My Network')}
-            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
+            onClick={() => setActiveView('network')}
+            className="hidden md:flex w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 items-center justify-center transition-all cursor-pointer"
             title="My Network"
           >
             <Users size={19} strokeWidth={1.8} />
           </button>
 
-          {/* Jobs -> Assessment */}
+          {/* Jobs (Desktop only) */}
           <button
-            onClick={() => setActiveView('assessment-mcq')}
-            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
-            title="Jobs & Technical Assessment"
+            onClick={() => setActiveView('jobs')}
+            className="hidden md:flex w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 items-center justify-center transition-all cursor-pointer"
+            title="Jobs & Opportunities"
           >
             <Briefcase size={19} strokeWidth={1.8} />
           </button>
 
           {/* Messages with purple badge 3 */}
           <button
-            onClick={() => showToast('Messages: 3 unread client messages')}
-            className="relative w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
+            onClick={() => setActiveView('messages')}
+            className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all cursor-pointer"
             title="Messages"
           >
-            <MessageSquare size={19} strokeWidth={1.8} />
-            <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+            <MessageSquare size={18} strokeWidth={1.8} />
+            <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
               3
             </span>
           </button>
 
           {/* Notifications with purple badge 1 */}
           <button
-            onClick={() => showToast('Notifications: 1 new update')}
-            className="relative w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
+            onClick={() => setActiveView('notifications')}
+            className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all cursor-pointer"
             title="Notifications"
           >
-            <Bell size={19} strokeWidth={1.8} />
-            <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+            <Bell size={18} strokeWidth={1.8} />
+            <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
               1
             </span>
           </button>
 
           {/* User Profile Avatar with dropdown */}
-          <div className="relative ml-1" ref={dropdownRef}>
+          <div className="relative ml-0.5 sm:ml-1" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1.5 p-1 rounded-full hover:bg-white/80 transition-all"
+              className="flex items-center gap-1 p-0.5 sm:p-1 rounded-full hover:bg-white/80 transition-all cursor-pointer"
               title="Profile menu"
             >
               <img
                 src="/assets/annie-portrait.png"
                 alt="Annie Stanley"
-                className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-sm"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover border-2 border-white shadow-sm"
               />
-              <ChevronDown size={14} className="text-[#64748B]" />
+              <ChevronDown size={13} className="text-[#64748B]" />
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-white/95 backdrop-blur-2xl border border-white shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="px-4 py-2.5 border-b border-slate-100 flex items-center gap-3">
+              <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white border border-[#EAE5F5] shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
+                <div className="px-4 py-2.5 border-b border-[#ECE7F8] flex items-center gap-3">
                   <img
                     src="/assets/annie-portrait.png"
                     alt="Annie Stanley"
@@ -149,7 +149,7 @@ export const Navbar: React.FC = () => {
                   />
                   <div className="min-w-0">
                     <p className="font-semibold text-sm text-[#0F172A] truncate">Annie Stanley</p>
-                    <p className="text-xs text-[#5828F0] flex items-center gap-1">
+                    <p className="text-xs text-[#5828F0] flex items-center gap-1 font-semibold">
                       <CheckCircle2 size={12} /> Verified UX Designer
                     </p>
                   </div>
@@ -162,9 +162,9 @@ export const Navbar: React.FC = () => {
                       setActiveProfileTab('skills');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
                   >
-                    View Skills & Profile
+                    View Skills &amp; Profile
                   </button>
                   <button
                     onClick={() => {
@@ -172,34 +172,52 @@ export const Navbar: React.FC = () => {
                       setActiveProfileTab('projects');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
                   >
                     View Featured Projects
                   </button>
                   <button
                     onClick={() => {
-                      setActiveView('assessment-mcq');
+                      setActiveView('jobs');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
                   >
-                    Take Assessment MCQ
+                    Recommended Jobs (C-44)
                   </button>
                   <button
                     onClick={() => {
-                      setActiveView('assessment-subjective');
+                      setActiveView('score-benchmark');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
                   >
-                    Take Assessment Subjective
+                    Score &amp; Benchmark Studio (C-35)
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveView('digital-vault');
+                      setIsDropdownOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
+                  >
+                    Digital Credentials Vault (C-68)
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveView('assessment-hub');
+                      setIsDropdownOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
+                  >
+                    Assessment Hub (C-22)
                   </button>
                   <button
                     onClick={() => {
                       setActiveView('employment-details');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-[#F4F1FD] hover:text-[#5828F0] flex items-center gap-2 transition-colors cursor-pointer"
                   >
                     Employment Details (6 Steps)
                   </button>

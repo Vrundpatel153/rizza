@@ -23,7 +23,7 @@ export const AssessmentMCQPage: React.FC = () => {
   return (
     <div className="w-full grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-5 items-start">
       {/* Center Main Workspace - Single Unified Card Matching Reference Exactly */}
-      <div className="min-w-0 w-full p-6 sm:p-7 pb-8 relative overflow-visible bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_35px_rgba(110,80,190,0.06)] flex flex-col gap-5">
+      <div className="min-w-0 w-full p-6 sm:p-7 pb-8 relative overflow-visible bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex flex-col gap-5">
         {/* Top Header Section */}
         <div>
           {/* Back link */}
@@ -102,7 +102,7 @@ export const AssessmentMCQPage: React.FC = () => {
                 className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center gap-3.5 select-none ${
                   isSelected
                     ? 'bg-[#FAF8FE] border-[#5828F0] shadow-[0_4px_16px_rgba(88,40,240,0.1)] ring-1 ring-[#5828F0]'
-                    : 'bg-white/80 border-[#ECE8F7] hover:border-[#D4CEEF] hover:bg-white'
+                    : 'bg-[#FAFAFE] border-[#ECE7F8] hover:border-[#D4CEEF] hover:bg-white'
                 }`}
               >
                 <div
@@ -129,7 +129,7 @@ export const AssessmentMCQPage: React.FC = () => {
         </div>
 
         {/* Tip Card */}
-        <div className="p-4 rounded-2xl bg-[#FAF8FE] border border-[#ECE8F7] flex items-center gap-3">
+        <div className="p-4 rounded-2xl bg-[#FAF8FE] border border-[#ECE7F8] flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 shadow-sm">
             <Lightbulb size={17} />
           </div>
@@ -145,7 +145,7 @@ export const AssessmentMCQPage: React.FC = () => {
         <div className="flex items-center justify-between gap-4 pt-2 border-t border-[#F1EDF9]">
           <button
             onClick={() => setActiveView('profile-skills')}
-            className="px-6 py-2.5 rounded-xl border border-slate-200 bg-white text-[#475467] font-semibold text-xs hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm cursor-pointer"
+            className="px-6 py-2.5 rounded-xl border border-[#EAE5F5] bg-white text-[#475467] font-semibold text-xs hover:bg-[#F8F7FD] transition-all flex items-center gap-2 shadow-sm cursor-pointer"
           >
             <ArrowLeft size={14} />
             <span>Previous</span>
@@ -153,7 +153,7 @@ export const AssessmentMCQPage: React.FC = () => {
 
           <button
             onClick={handleNext}
-            className="px-8 py-2.5 rounded-xl btn-primary-gradient font-semibold text-xs shadow-[0_6px_20px_rgba(88,40,240,0.4)] hover:shadow-[0_8px_24px_rgba(88,40,240,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
+            className="px-8 py-2.5 rounded-xl btn-primary-purple font-semibold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
           >
             <span>Next</span>
             <ArrowRight size={14} />
@@ -164,8 +164,8 @@ export const AssessmentMCQPage: React.FC = () => {
       {/* Right Rail Contextual Info */}
       <div className="w-full xl:w-[340px] flex-shrink-0 flex flex-col gap-4">
         {/* Assessment Overview Card */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
-          <h3 className="text-[15px] font-bold text-[#0F172A] tracking-tight mb-1">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
+          <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight mb-1">
             Assessment overview
           </h3>
           <p className="text-xs text-[#64748B] mb-4">
@@ -200,7 +200,7 @@ export const AssessmentMCQPage: React.FC = () => {
         </div>
 
         {/* Your Progress */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
           <div className="flex items-center justify-between text-xs mb-2">
             <span className="font-bold text-[#0F172A]">Your progress</span>
             <span className="text-[#64748B]">4 / 20 completed (20%)</span>
@@ -222,7 +222,7 @@ export const AssessmentMCQPage: React.FC = () => {
         </div>
 
         {/* Why this matters */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex items-start gap-3">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex items-start gap-3">
           <div className="w-9 h-9 rounded-xl bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
             <Target size={18} />
           </div>

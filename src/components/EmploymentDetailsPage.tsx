@@ -51,13 +51,13 @@ export const EmploymentDetailsPage: React.FC = () => {
       {/* Center Main Workspace */}
       <div className="min-w-0 w-full flex flex-col gap-4">
         {/* Top Header Card with Stepper */}
-        <div className="p-6 relative overflow-hidden bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+        <div className="p-6 relative overflow-hidden bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
           {/* Header Title Row */}
           <div className="flex items-center justify-between gap-4 mb-5">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setActiveView('profile-skills')}
-                className="w-9 h-9 rounded-full bg-[#F4F1FD] text-[#475569] hover:text-[#5828F0] hover:bg-white flex items-center justify-center transition-all shadow-sm"
+                className="w-9 h-9 rounded-full bg-[#F4F1FD] text-[#475569] hover:text-[#5828F0] hover:bg-white flex items-center justify-center transition-all shadow-sm cursor-pointer"
                 title="Back to profile"
               >
                 <ArrowLeft size={16} />
@@ -74,16 +74,16 @@ export const EmploymentDetailsPage: React.FC = () => {
 
             <button
               onClick={() => showToast('Employment options')}
-              className="w-9 h-9 rounded-xl bg-white/80 border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 hover:bg-white transition-all"
+              className="w-9 h-9 rounded-full bg-white border border-[#EAE5F5] shadow-sm flex items-center justify-center text-[#475569] hover:text-[#5828F0] hover:border-[#D6D0F2] transition-all cursor-pointer"
             >
               <MoreHorizontal size={18} />
             </button>
           </div>
 
           {/* Stepper Steps (1 to 6) */}
-          <div className="relative flex items-center justify-between gap-2 pt-2">
+          <div className="relative flex items-center justify-between gap-2 pt-2 overflow-x-auto no-scrollbar pb-1">
             {/* Connecting background line */}
-            <div className="absolute top-[20px] left-8 right-8 h-[2px] bg-[#EBE7F7] z-0" />
+            <div className="absolute top-[20px] left-8 right-8 h-[2px] bg-[#EBE7F7] z-0 min-w-[450px]" />
 
             {steps.map((st) => {
               const IconComp = st.icon;
@@ -93,12 +93,12 @@ export const EmploymentDetailsPage: React.FC = () => {
                 <div
                   key={st.num}
                   onClick={() => setEmploymentStep(st.num)}
-                  className="relative z-10 flex flex-col items-center cursor-pointer group flex-1"
+                  className="relative z-10 flex flex-col items-center cursor-pointer group min-w-[70px] flex-1"
                 >
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
                       isActive
-                        ? 'bg-[#5828F0] text-white shadow-[0_4px_14px_rgba(88,40,240,0.45)] ring-4 ring-white'
+                        ? 'btn-primary-purple ring-4 ring-white'
                         : isPast
                         ? 'bg-[#EDE9FE] text-[#5828F0] ring-4 ring-white'
                         : 'bg-white text-[#94A3B8] border border-[#E2DAFC] group-hover:border-[#5828F0]'
@@ -123,7 +123,7 @@ export const EmploymentDetailsPage: React.FC = () => {
         </div>
 
         {/* Basic Information Card (7 Details Rows) */}
-        <div className="p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex flex-col gap-4">
+        <div className="p-6 sm:p-7 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex flex-col gap-4">
           <div>
             <h2 className="text-[17px] font-bold text-[#0F172A] tracking-tight">
               {employmentStep}. {steps[employmentStep - 1].name} information
@@ -141,26 +141,28 @@ export const EmploymentDetailsPage: React.FC = () => {
               return (
                 <div
                   key={row.key}
-                  className="py-3 flex items-center justify-between gap-4 hover:bg-[#FAF9FE] px-2 rounded-xl transition-colors group"
+                  className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 hover:bg-[#FAF9FE] px-2 rounded-xl transition-colors group"
                 >
-                  <div className="flex items-center gap-3 w-1/3 text-xs font-semibold text-[#475569]">
+                  <div className="flex items-center gap-3 sm:w-1/3 min-w-[120px] text-xs font-semibold text-[#475569]">
                     <div className="w-7 h-7 rounded-lg bg-[#F4F1FD] text-[#5828F0] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <IconComp size={14} strokeWidth={2} />
                     </div>
                     <span>{row.label}</span>
                   </div>
 
-                  <div className="flex-1 text-xs font-bold text-[#0F172A] truncate">
-                    {val}
-                  </div>
+                  <div className="flex-1 flex items-center justify-between sm:justify-start gap-4">
+                    <div className="text-xs font-bold text-[#0F172A] truncate">
+                      {val}
+                    </div>
 
-                  <button
-                    onClick={() => openEditFieldModal(row.key, row.label)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-[#5828F0] hover:text-[#4314cc] px-2.5 py-1 rounded-lg hover:bg-[#F4F1FD] transition-all"
-                  >
-                    <span>Edit</span>
-                    <Edit3 size={12} />
-                  </button>
+                    <button
+                      onClick={() => openEditFieldModal(row.key, row.label)}
+                      className="flex items-center gap-1.5 text-xs font-bold text-[#5828F0] hover:text-[#4314cc] px-2.5 py-1 rounded-lg hover:bg-[#F4F1FD] transition-all cursor-pointer ml-auto"
+                    >
+                      <span>Edit</span>
+                      <Edit3 size={12} />
+                    </button>
+                  </div>
                 </div>
               );
             })}
@@ -170,7 +172,7 @@ export const EmploymentDetailsPage: React.FC = () => {
           <div className="pt-3 border-t border-[#F1EDF9]">
             <button
               onClick={handleContinue}
-              className="w-full btn-primary-gradient py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(88,40,240,0.4)] hover:shadow-[0_8px_24px_rgba(88,40,240,0.5)] active:scale-95 transition-all cursor-pointer"
+              className="w-full btn-primary-purple py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer"
             >
               <span>{employmentStep === 6 ? 'Finish & Save to Profile' : 'Continue'}</span>
               <ArrowRight size={16} />
@@ -182,9 +184,9 @@ export const EmploymentDetailsPage: React.FC = () => {
       {/* Right Column Contextual Rail */}
       <div className="w-full xl:w-[340px] flex-shrink-0 flex flex-col gap-4">
         {/* Make Your Experience Stand Out Card with 3D Illustration */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] relative overflow-hidden">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] relative overflow-hidden">
           <div className="flex items-start justify-between gap-3">
-            <div className="max-w-[65%]">
+            <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-bold text-[#0F172A] leading-snug">
                 Make your experience <span className="text-[#5828F0]">stand out</span>
               </h3>
@@ -194,7 +196,7 @@ export const EmploymentDetailsPage: React.FC = () => {
             </div>
 
             {/* Seamless 3D Illustration */}
-            <div className="w-[100px] h-[90px] pointer-events-none select-none overflow-hidden -mt-1 -mr-1 flex items-center justify-end flex-shrink-0">
+            <div className="w-[85px] h-[80px] pointer-events-none select-none overflow-hidden flex items-center justify-end flex-shrink-0">
               <img
                 src="/assets/employment-3d-graphic.png"
                 alt=""
@@ -205,7 +207,7 @@ export const EmploymentDetailsPage: React.FC = () => {
         </div>
 
         {/* Guidance Tips Card */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex flex-col gap-3">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex flex-col gap-3">
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-xl bg-[#EDE9FE] text-[#5828F0] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
               <Lightbulb size={15} />
@@ -238,7 +240,7 @@ export const EmploymentDetailsPage: React.FC = () => {
         </div>
 
         {/* Motivational Quote Card */}
-        <div className="p-5 sm:p-6 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)] flex items-start gap-3">
+        <div className="p-6 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)] flex items-start gap-3">
           <span className="text-2xl font-serif text-[#5828F0] leading-none font-bold select-none mt-0.5">
             “
           </span>

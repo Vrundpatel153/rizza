@@ -79,7 +79,7 @@ export const ProjectsTabContent: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       {/* Featured Work Container */}
-      <div className="p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+      <div className="p-6 sm:p-7 bg-white rounded-[26px] border border-[#EAE5F5] shadow-[0_4px_20px_-2px_rgba(100,70,190,0.07)]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
             <h2 className="text-[17px] font-bold text-[#0F172A] tracking-tight">
@@ -92,7 +92,7 @@ export const ProjectsTabContent: React.FC = () => {
 
           <button
             onClick={() => showToast('Viewing full project portfolio archive')}
-            className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
+            className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 self-start sm:self-auto cursor-pointer"
           >
             <span>View all projects</span>
             <ArrowRight size={12} />
@@ -109,8 +109,8 @@ export const ProjectsTabContent: React.FC = () => {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`text-xs font-medium px-4 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'font-semibold pill-primary-gradient'
-                    : 'bg-[#F5F4FA] text-[#475467] border border-[#E8E6F0] hover:bg-white hover:text-[#0F172A] hover:border-[#D0CDE0]'
+                    ? 'font-semibold pill-active-purple'
+                    : 'bg-[#F8F6FE] text-[#475569] border border-[#EAE5F5] hover:bg-white hover:text-[#0F172A]'
                 }`}
               >
                 {cat.label}
@@ -125,7 +125,7 @@ export const ProjectsTabContent: React.FC = () => {
             <div
               key={proj.id}
               onClick={() => showToast(`Opening project: ${proj.title}`)}
-              className="group bg-white rounded-[22px] p-2.5 border border-[#ECE8F7] shadow-sm hover:shadow-[0_10px_28px_rgba(88,40,240,0.12)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group bg-[#FAFAFE] rounded-[22px] p-2.5 border border-[#EAE5F5] shadow-sm hover:shadow-[0_10px_28px_rgba(88,40,240,0.12)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Mockup Container */}
@@ -153,11 +153,11 @@ export const ProjectsTabContent: React.FC = () => {
               </div>
 
               {/* Tag Pills */}
-              <div className="flex items-center gap-1.5 flex-wrap mt-2.5 px-1 pt-2 border-t border-[#F5F3FB]">
+              <div className="flex items-center gap-1.5 flex-wrap mt-2.5 px-1 pt-2 border-t border-[#ECE7F8]">
                 {proj.tags.map((t, idx) => (
                   <span
                     key={idx}
-                    className="text-[10px] font-medium px-2 py-0.5 rounded-lg bg-[#F5F4FA] text-[#475467] border border-[#E8E6F0]"
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-lg bg-white text-[#475569] border border-[#EAE5F5]"
                   >
                     {t}
                   </span>
