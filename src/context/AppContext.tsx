@@ -37,6 +37,8 @@ interface AppContextType {
   // Modals & Extras
   isProModalOpen: boolean;
   setIsProModalOpen: (open: boolean) => void;
+  isMobileMenuOpen: boolean;
+  setIsMobileMenuOpen: (open: boolean) => void;
   isEditFieldModalOpen: boolean;
   editingField: { key: keyof EmploymentDetailsData; label: string; value: string } | null;
   openEditFieldModal: (key: keyof EmploymentDetailsData, label: string) => void;
@@ -72,9 +74,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   })();
 
-  const [activeView, setActiveView] = useState<ActiveView>(savedState?.activeView || 'profile-skills');
+  // Initialize activeView from URL path if present, otherwise from savedState or default
+  const getViewFromPath = (): ActiveView | null => {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('assessment-mcq')) return 'assessment-mcq';
+    if (path.includes('assessment-subjective')) return 'assessment-subjective';
+    if (path.includes('employment-details')) return 'employment-details';
+    if (path.includes('projects') || path.includes('profile-projects')) return 'profile-projects';
+    if (path.includes('skills') || path.includes('profile-skills')) return 'profile-skills';
+    if (path === '/' || path === '') return 'profile-skills';
+    return null;
+  };
+
+  const initialView = getViewFromPath() || savedState?.activeView || 'profile-skills';
+  const [activeView, setActiveViewState] = useState<ActiveView>(initialView);
   const [activeProfileTab, setActiveProfileTabState] = useState<ProfileTab>(
-    savedState?.activeProfileTab || (savedState?.activeView === 'profile-projects' ? 'projects' : 'skills')
+    initialView === 'profile-projects' ? 'projects' : 'skills'
   );
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(savedState?.isAuthenticated ?? true);
@@ -105,8 +120,27 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 
   const [isProModalOpen, setIsProModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [editingField, setEditingField] = useState<{ key: keyof EmploymentDetailsData; label: string; value: string } | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const setActiveView = (view: ActiveView) => {
+    setActiveViewState(view);
+    setIsMobileMenuOpen(false);
+    if (view === 'profile-skills') {
+      setActiveProfileTabState('skills');
+      window.history.pushState({}, '', '/');
+    } else if (view === 'profile-projects') {
+      setActiveProfileTabState('projects');
+      window.history.pushState({}, '', '/projects');
+    } else if (view === 'assessment-mcq') {
+      window.history.pushState({}, '', '/assessment-mcq');
+    } else if (view === 'assessment-subjective') {
+      window.history.pushState({}, '', '/assessment-subjective');
+    } else if (view === 'employment-details') {
+      window.history.pushState({}, '', '/employment-details');
+    }
+  };
 
   // Sync profile tab with view
   const setActiveProfileTab = (tab: ProfileTab) => {
@@ -118,11 +152,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  // Sync view changes back to profile tabs
+  // Listen to browser popstate (back/forward)
   useEffect(() => {
-    if (activeView === 'profile-skills') setActiveProfileTabState('skills');
-    if (activeView === 'profile-projects') setActiveProfileTabState('projects');
-  }, [activeView]);
+    const handlePopState = () => {
+      const view = getViewFromPath();
+      if (view) {
+        setActiveViewState(view);
+        if (view === 'profile-projects') setActiveProfileTabState('projects');
+        else if (view === 'profile-skills') setActiveProfileTabState('skills');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Persist to localStorage
   useEffect(() => {
@@ -226,6 +268,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setSubjectiveAnswer,
         isProModalOpen,
         setIsProModalOpen,
+        isMobileMenuOpen,
+        setIsMobileMenuOpen,
         isEditFieldModalOpen: editingField !== null,
         editingField,
         openEditFieldModal,

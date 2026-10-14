@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Home, Users, Briefcase, MessageSquare, Bell, ChevronDown, LogOut, CheckCircle2 } from 'lucide-react';
+import { Search, Home, Users, Briefcase, MessageSquare, Bell, ChevronDown, LogOut, CheckCircle2, Menu } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export const Navbar: React.FC = () => {
-  const { setActiveView, setActiveProfileTab, userEmail, logout, showToast } = useApp();
+  const { setActiveView, setActiveProfileTab, userEmail, logout, showToast, setIsMobileMenuOpen } = useApp();
   const [searchValue, setSearchValue] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -26,183 +26,194 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-xl border-b border-[#ECE8F7]/80">
-      <div className="max-w-[1584px] mx-auto px-4 sm:px-6 md:px-8 lg:px-9 h-[70px] flex items-center justify-between gap-4">
-        {/* Logo */}
-        <div
-          onClick={() => {
-            setActiveProfileTab('skills');
-            setActiveView('profile-skills');
-          }}
-          className="flex items-center gap-2.5 cursor-pointer flex-shrink-0 group"
-          title="Rizza Platform"
-        >
-          <img
-            src="/assets/rizza-header-logo.png"
-            alt="Rizza"
-            className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
-          />
+    <header className="w-full bg-transparent">
+      <div className="max-w-[1584px] mx-auto px-4 md:px-6 h-[66px] flex items-center justify-between gap-4 sm:gap-6">
+        {/* Left: Mobile Hamburger & Logo */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="lg:hidden w-9 h-9 rounded-xl bg-white/80 border border-slate-200/60 shadow-sm flex items-center justify-center text-slate-700 hover:text-[#5828F0] hover:bg-white transition-all"
+            title="Open Menu"
+          >
+            <Menu size={20} />
+          </button>
+
+          <div
+            onClick={() => {
+              setActiveProfileTab('skills');
+              setActiveView('profile-skills');
+            }}
+            className="flex items-center gap-2.5 cursor-pointer flex-shrink-0 group"
+            title="Rizza Platform"
+          >
+            <img
+              src="/assets/rizza-header-logo.png"
+              alt="Rizza"
+              className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+          </div>
         </div>
 
-        {/* Search Input Bar */}
-        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-[480px] hidden md:block">
+        {/* Search Input Bar (Capsule Pill matching reference) */}
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-[580px] hidden md:block">
           <div className="relative flex items-center">
-            <Search size={18} className="absolute left-4 text-[#7E88A2] pointer-events-none" />
+            <Search size={17} className="absolute left-4 text-[#7E88A2] pointer-events-none" />
             <input
               type="text"
               placeholder="Search people, jobs, or companies..."
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-full text-sm bg-[#F4F2FC] border border-[#EDE9F8] text-[#111625] placeholder-[#7E88A2] focus:bg-white focus:border-[#5832E6] focus:outline-none focus:ring-2 focus:ring-[#5832E6]/10 transition-all shadow-inner"
+              className="w-full pl-11 pr-4 py-2.5 rounded-full text-[13.5px] bg-white/75 backdrop-blur-md border border-white/95 text-[#0F172A] placeholder-[#8A94A6] focus:bg-white focus:border-[#5828F0]/30 focus:outline-none focus:ring-2 focus:ring-[#5828F0]/15 transition-all shadow-[0_2px_8px_rgba(100,80,160,0.04)]"
             />
           </div>
         </form>
 
         {/* Right Navigation & Profile */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Home */}
           <button
             onClick={() => {
               setActiveProfileTab('skills');
               setActiveView('profile-skills');
             }}
-            className="w-10 h-10 rounded-xl text-[#47516B] hover:text-[#5832E6] hover:bg-white/90 flex items-center justify-center transition-all"
+            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
             title="Home"
           >
-            <Home size={20} strokeWidth={1.8} />
+            <Home size={19} strokeWidth={1.8} />
           </button>
 
           {/* My Network */}
           <button
             onClick={() => showToast('My Network')}
-            className="w-10 h-10 rounded-xl text-[#47516B] hover:text-[#5832E6] hover:bg-white/90 flex items-center justify-center transition-all"
+            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
             title="My Network"
           >
-            <Users size={20} strokeWidth={1.8} />
+            <Users size={19} strokeWidth={1.8} />
           </button>
 
           {/* Jobs -> Assessment */}
           <button
             onClick={() => setActiveView('assessment-mcq')}
-            className="w-10 h-10 rounded-xl text-[#47516B] hover:text-[#5832E6] hover:bg-white/90 flex items-center justify-center transition-all"
+            className="w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
             title="Jobs & Technical Assessment"
           >
-            <Briefcase size={20} strokeWidth={1.8} />
+            <Briefcase size={19} strokeWidth={1.8} />
           </button>
 
-          {/* Messages */}
+          {/* Messages with purple badge 3 */}
           <button
-            onClick={() => showToast('3 unread client messages')}
-            className="relative w-10 h-10 rounded-xl text-[#47516B] hover:text-[#5832E6] hover:bg-white/90 flex items-center justify-center transition-all"
+            onClick={() => showToast('Messages: 3 unread client messages')}
+            className="relative w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
             title="Messages"
           >
-            <MessageSquare size={20} strokeWidth={1.8} />
-            <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#5832E6] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+            <MessageSquare size={19} strokeWidth={1.8} />
+            <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
               3
             </span>
           </button>
 
-          {/* Notifications */}
+          {/* Notifications with purple badge 1 */}
           <button
-            onClick={() => showToast('1 new notification')}
-            className="relative w-10 h-10 rounded-xl text-[#47516B] hover:text-[#5832E6] hover:bg-white/90 flex items-center justify-center transition-all"
+            onClick={() => showToast('Notifications: 1 new update')}
+            className="relative w-9 h-9 rounded-xl text-[#475467] hover:text-[#5828F0] hover:bg-white/80 flex items-center justify-center transition-all"
             title="Notifications"
           >
-            <Bell size={20} strokeWidth={1.8} />
-            <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#5832E6] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+            <Bell size={19} strokeWidth={1.8} />
+            <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#5828F0] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
               1
             </span>
           </button>
 
-          {/* User Avatar with Dropdown */}
+          {/* User Profile Avatar with dropdown */}
           <div className="relative ml-1" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1 p-0.5 rounded-full hover:ring-2 hover:ring-[#5832E6]/20 transition-all"
-              title="Annie Stanley Profile"
+              className="flex items-center gap-1.5 p-1 rounded-full hover:bg-white/80 transition-all"
+              title="Profile menu"
             >
               <img
-                src="/assets/annie-nav-avatar.png"
+                src="/assets/annie-portrait.png"
                 alt="Annie Stanley"
-                className="w-9 h-9 rounded-full object-cover ring-2 ring-white shadow-sm"
+                className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-sm"
               />
-              <ChevronDown size={14} className={`text-[#7E88A2] transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={14} className="text-[#64748B]" />
             </button>
 
-            {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#ECE8F7] shadow-[0_10px_35px_-4px_rgba(85,75,140,0.15)] py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="px-4 py-3 border-b border-[#F4F2FA]">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-bold text-[#111625]">Annie Stanley</span>
-                    <CheckCircle2 size={15} className="text-[#2563EB]" />
-                  </div>
-                  <div className="text-xs text-[#7E88A2] truncate">{userEmail}</div>
-                  <div className="mt-1.5 inline-block text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#EDE9FE] text-[#5832E6]">
-                    Candidate · Verified
+              <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-white/95 backdrop-blur-2xl border border-white shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
+                <div className="px-4 py-2.5 border-b border-slate-100 flex items-center gap-3">
+                  <img
+                    src="/assets/annie-portrait.png"
+                    alt="Annie Stanley"
+                    className="w-10 h-10 rounded-full object-cover border border-purple-200"
+                  />
+                  <div className="min-w-0">
+                    <p className="font-semibold text-sm text-[#0F172A] truncate">Annie Stanley</p>
+                    <p className="text-xs text-[#5828F0] flex items-center gap-1">
+                      <CheckCircle2 size={12} /> Verified UX Designer
+                    </p>
                   </div>
                 </div>
 
-                <div className="py-1 text-xs">
+                <div className="py-1">
                   <button
                     onClick={() => {
-                      setActiveProfileTab('skills');
                       setActiveView('profile-skills');
+                      setActiveProfileTab('skills');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-[#47516B] hover:bg-[#F4F1FF] hover:text-[#5832E6] transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
                   >
-                    View Profile (Skills)
+                    View Skills & Profile
                   </button>
                   <button
                     onClick={() => {
-                      setActiveProfileTab('projects');
                       setActiveView('profile-projects');
+                      setActiveProfileTab('projects');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-[#47516B] hover:bg-[#F4F1FF] hover:text-[#5832E6] transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
                   >
-                    View Projects Tab
+                    View Featured Projects
                   </button>
                   <button
                     onClick={() => {
                       setActiveView('assessment-mcq');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-[#47516B] hover:bg-[#F4F1FF] hover:text-[#5832E6] transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
                   >
-                    Technical Assessment (MCQ)
+                    Take Assessment MCQ
                   </button>
                   <button
                     onClick={() => {
                       setActiveView('assessment-subjective');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-[#47516B] hover:bg-[#F4F1FF] hover:text-[#5832E6] transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
                   >
-                    Technical Assessment (Subjective)
+                    Take Assessment Subjective
                   </button>
                   <button
                     onClick={() => {
                       setActiveView('employment-details');
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-[#47516B] hover:bg-[#F4F1FF] hover:text-[#5832E6] transition-colors"
+                    className="w-full px-4 py-2 text-left text-xs text-[#334155] hover:bg-purple-50 hover:text-[#5828F0] flex items-center gap-2 transition-colors"
                   >
-                    Employment Details
+                    Employment Details (6 Steps)
                   </button>
                 </div>
 
-                <div className="border-t border-[#F4F2FA] pt-1">
+                <div className="pt-1 border-t border-slate-100">
                   <button
                     onClick={() => {
-                      logout();
                       setIsDropdownOpen(false);
+                      logout();
                     }}
-                    className="w-full px-4 py-2 text-left font-medium text-rose-600 hover:bg-rose-50 transition-colors flex items-center gap-2 text-xs"
+                    className="w-full px-4 py-2 text-left text-xs text-rose-600 hover:bg-rose-50 flex items-center gap-2 transition-colors"
                   >
-                    <LogOut size={14} />
-                    <span>Log out</span>
+                    <LogOut size={13} /> Sign Out ({userEmail.split('@')[0]})
                   </button>
                 </div>
               </div>

@@ -77,15 +77,15 @@ export const ProjectsTabContent: React.FC = () => {
     : projects.filter(p => p.category.includes(selectedCategory));
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-4">
       {/* Featured Work Container */}
-      <div className="rizza-card p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[28px] shadow-[0_8px_30px_-4px_rgba(112,66,248,0.06)]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+      <div className="p-6 sm:p-7 bg-white/90 backdrop-blur-2xl border border-white/95 rounded-[26px] shadow-[0_10px_30px_rgba(110,80,190,0.06)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
-            <h2 className="text-xl font-bold text-[#0F172A] tracking-tight">
+            <h2 className="text-[17px] font-bold text-[#0F172A] tracking-tight">
               Featured work
             </h2>
-            <p className="text-sm text-[#64748B] mt-0.5">
+            <p className="text-xs text-[#64748B] mt-0.5">
               A selection of my recent projects and case studies.
             </p>
           </div>
@@ -95,23 +95,22 @@ export const ProjectsTabContent: React.FC = () => {
             className="text-xs font-semibold text-[#5828F0] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
           >
             <span>View all projects</span>
-            <ArrowRight size={13} />
+            <ArrowRight size={12} />
           </button>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+        {/* Filter Pills matching reference */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar select-none">
           {categories.map(cat => {
             const isActive = selectedCategory === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                style={isActive ? { backgroundColor: '#5828F0', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(88, 40, 240, 0.35)' } : {}}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap active:scale-95 ${
+                className={`text-xs font-medium px-4 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'scale-[1.02]'
-                    : 'bg-[#F4F1FD] text-[#64748B] border border-[#DDD6FE] hover:bg-[#EDE9FE] hover:text-[#5828F0]'
+                    ? 'font-semibold pill-primary-gradient'
+                    : 'bg-[#F5F4FA] text-[#475467] border border-[#E8E6F0] hover:bg-white hover:text-[#0F172A] hover:border-[#D0CDE0]'
                 }`}
               >
                 {cat.label}
@@ -121,12 +120,12 @@ export const ProjectsTabContent: React.FC = () => {
         </div>
 
         {/* 6 Project Cards Grid (3x2) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
           {filteredProjects.map(proj => (
             <div
               key={proj.id}
               onClick={() => showToast(`Opening project: ${proj.title}`)}
-              className="group bg-white/95 rounded-[22px] p-3 border border-white/90 shadow-[0_4px_18px_rgba(85,75,140,0.06)] hover:shadow-[0_12px_32px_-4px_rgba(88,40,240,0.16)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group bg-white rounded-[22px] p-2.5 border border-[#ECE8F7] shadow-sm hover:shadow-[0_10px_28px_rgba(88,40,240,0.12)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Mockup Container */}
@@ -137,28 +136,28 @@ export const ProjectsTabContent: React.FC = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* External Link Floating Button */}
-                  <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-lg bg-black/40 backdrop-blur-md text-white flex items-center justify-center transition-all group-hover:bg-[#5828F0] group-hover:scale-110">
-                    <ExternalLink size={13} />
+                  <div className="absolute top-2 right-2 w-6 h-6 rounded-md bg-black/40 backdrop-blur-md text-white flex items-center justify-center transition-all group-hover:bg-[#5828F0]">
+                    <ExternalLink size={11} />
                   </div>
                 </div>
 
                 {/* Title & Subtitle */}
-                <div className="mt-3">
-                  <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#5828F0] transition-colors">
+                <div className="mt-2.5 px-1">
+                  <h3 className="text-[13.5px] font-bold text-[#0F172A] group-hover:text-[#5828F0] transition-colors leading-tight">
                     {proj.title}
                   </h3>
-                  <p className="text-xs text-[#64748B] mt-0.5">
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
                     {proj.subtitle}
                   </p>
                 </div>
               </div>
 
               {/* Tag Pills */}
-              <div className="flex items-center gap-1.5 flex-wrap mt-3 pt-2.5 border-t border-[#F5F3FB]">
+              <div className="flex items-center gap-1.5 flex-wrap mt-2.5 px-1 pt-2 border-t border-[#F5F3FB]">
                 {proj.tags.map((t, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#F4F1FD] text-[#5828F0] border border-[#E9E3FC]"
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-lg bg-[#F5F4FA] text-[#475467] border border-[#E8E6F0]"
                   >
                     {t}
                   </span>

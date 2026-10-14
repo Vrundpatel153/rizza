@@ -289,3 +289,30 @@ a {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+
+/* Explicit Bulletproof Gradient and Active State Utilities */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #5828F0 0%, #461AD9 100%) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #6432F5 0%, #4E20E0 100%) !important;
+  box-shadow: 0 8px 24px rgba(88, 40, 240, 0.45) !important;
+}
+
+.pill-primary-gradient {
+  background: linear-gradient(135deg, #5828F0 0%, #461AD9 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(88, 40, 240, 0.35) !important;
+}
+
+.progress-capsule-active {
+  background: linear-gradient(90deg, #5828F0 0%, #431ECB 100%) !important;
+  box-shadow: 0 0 8px rgba(88, 40, 240, 0.35) !important;
+}
+
+.sidebar-item-active {
+  color: #5828F0 !important;
+  background: rgba(88, 40, 240, 0.08) !important;
+}

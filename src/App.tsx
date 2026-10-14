@@ -19,36 +19,36 @@ const MainAppLayout: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col font-sans text-[#111625] selection:bg-[#5832E6] selection:text-white">
-      {/* Ambient Fluid Background Waves */}
-      <div className="ambient-bg-layer">
-        {/* Soft Organic Background Glow Blobs */}
-        <div className="absolute -top-[10%] -left-[5%] w-[650px] h-[550px] rounded-full bg-gradient-to-tr from-[#8b5cf6]/20 to-[#c4b5fd]/30 blur-[80px]" />
-        <div className="absolute top-[5%] -right-[5%] w-[600px] h-[500px] rounded-full bg-gradient-to-bl from-[#a78bfa]/25 to-[#ddd6fe]/30 blur-[80px]" />
-        <div className="absolute top-[50%] left-[20%] w-[500px] h-[400px] rounded-full bg-gradient-to-r from-[#ddd6fe]/20 to-[#ede9fe]/30 blur-[90px]" />
-        <div className="absolute -bottom-[10%] right-[10%] w-[700px] h-[500px] rounded-full bg-gradient-to-tl from-[#7c3aed]/15 to-[#c4b5fd]/25 blur-[90px]" />
+    <div className="relative min-h-screen flex flex-col font-sans text-[#0F172A] selection:bg-[#5828F0] selection:text-white bg-[#F0EDFA]">
+      {/* Exact Ambient Canvas Layer */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Soft Ethereal Mesh Glows */}
+        <div className="absolute -top-[120px] left-[10%] w-[680px] h-[480px] rounded-full bg-gradient-to-br from-[#E2D9FC]/40 via-[#EDE8FD]/30 to-transparent blur-[90px]" />
+        <div className="absolute top-[40px] right-[5%] w-[620px] h-[520px] rounded-full bg-gradient-to-bl from-[#DDD3FE]/45 via-[#EBE5FD]/25 to-transparent blur-[100px]" />
+        <div className="absolute top-[40%] left-[25%] w-[500px] h-[450px] rounded-full bg-gradient-to-tr from-[#EDE9FE]/25 to-transparent blur-[90px]" />
+        <div className="absolute bottom-[-100px] right-[10%] w-[650px] h-[500px] rounded-full bg-gradient-to-tl from-[#DDD5FC]/35 to-transparent blur-[90px]" />
 
-        {/* Ambient SVG Waves behind sidebar and top header */}
-        <svg className="absolute top-0 left-0 w-full h-[320px] pointer-events-none opacity-40" viewBox="0 0 1600 320" fill="none">
-          <path d="M-100 80 C 300 240, 600 -40, 1100 120 C 1350 200, 1500 60, 1700 90 L 1700 0 L -100 0 Z" fill="url(#ambient-wave-grad)" />
-          <defs>
-            <linearGradient id="ambient-wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="#c4b5fd" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#ede9fe" stopOpacity="0.05" />
-            </linearGradient>
-          </defs>
+        {/* Delicate Concentric Circular Vector Arcs Behind Sidebar (as in reference image) */}
+        <svg className="absolute -bottom-10 -left-10 w-[550px] h-[550px] pointer-events-none opacity-40 select-none" viewBox="0 0 550 550" fill="none">
+          <circle cx="60" cy="490" r="160" stroke="#8B5CF6" strokeWidth="1" strokeOpacity="0.25" />
+          <circle cx="60" cy="490" r="240" stroke="#8B5CF6" strokeWidth="1" strokeOpacity="0.2" />
+          <circle cx="60" cy="490" r="320" stroke="#8B5CF6" strokeWidth="1" strokeOpacity="0.15" />
+          <circle cx="60" cy="490" r="400" stroke="#8B5CF6" strokeWidth="1" strokeOpacity="0.1" />
         </svg>
+
+        {/* Floating ambient subtle dots at bottom right (as in reference image) */}
+        <div className="absolute bottom-[40px] right-[320px] w-3 h-3 rounded-full bg-[#C4B5FD]/50 blur-[0.5px]" />
+        <div className="absolute bottom-[20px] right-[380px] w-2 h-2 rounded-full bg-[#C4B5FD]/40 blur-[0.5px]" />
       </div>
 
-      {/* Fixed/Sticky Top Navigation */}
-      <div className="relative z-30">
+      {/* Top Navigation */}
+      <div className="relative z-30 w-full">
         <Navbar />
       </div>
 
-      {/* Main Responsive Viewport */}
-      <main className="relative z-10 flex-1 w-full max-w-[1584px] mx-auto px-4 sm:px-6 md:px-8 lg:px-9 pb-12 pt-2">
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-7 items-start">
+      {/* Main 1584px Desktop Container */}
+      <main className="relative z-10 flex-1 w-full max-w-[1584px] mx-auto px-4 md:px-6 pb-6 pt-1">
+        <div className="flex flex-col lg:flex-row gap-5 items-start">
           {/* Left Navigation Sidebar */}
           <Sidebar />
 
