@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rizza Platform — Product &amp; Engineering Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0a0c14; color: #e2e8f0; line-height: 1.7; font-size: 15px; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0c14; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+    /* Cover */
+    .cover { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(ellipse 80% 60% at 50% 0%, #1e1065 0%, #0a0c14 70%); position: relative; overflow: hidden; padding: 60px 32px; }
+    .cover-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.35); color: #a5b4fc; padding: 6px 18px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; }
+    .cover h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 900; letter-spacing: -2px; line-height: 1.05; background: linear-gradient(135deg, #fff 30%, #a5b4fc 60%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; }
+    .cover .subtitle { font-size: 18px; color: #94a3b8; max-width: 620px; margin: 0 auto 48px; font-weight: 400; }
+    .cover-meta { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .cover-meta-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 28px; text-align: center; }
+    .cover-meta-item .val { font-size: 28px; font-weight: 800; color: #fff; display: block; }
+    .cover-meta-item .lbl { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,20,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 32px; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner a { color: #64748b; text-decoration: none; font-size: 13px; font-weight: 500; padding: 14px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .nav-inner a:hover { color: #a5b4fc; border-bottom-color: #6366f1; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    section + section { border-top: 1px solid rgba(255,255,255,0.05); }
+    .section-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #818cf8; margin-bottom: 12px; }
+    h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; letter-spacing: -1px; color: #f1f5f9; margin-bottom: 12px; }
+    h2 span { color: #818cf8; }
+    .section-lead { font-size: 16px; color: #94a3b8; max-width: 700px; margin-bottom: 48px; }
+    h3 { font-size: 18px; font-weight: 700; color: #e2e8f0; margin-bottom: 16px; }
+
+    /* Cards */
+    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px 32px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card-sm { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px 24px; }
+
+    /* Tags */
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.04em; }
+    .tag-purple { background: rgba(99,102,241,0.18); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .tag-blue   { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+    .tag-green  { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+    .tag-amber  { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .tag-rose   { background: rgba(244,63,94,0.15);  color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
+    .tag-cyan   { background: rgba(6,182,212,0.15);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+
+    /* Vertical Cards */
+    .vertical-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .vertical-card { border-radius: 14px; padding: 24px; position: relative; overflow: hidden; }
+    .vertical-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .vc-1 { background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); }
+    .vc-1::before { background: linear-gradient(90deg, #6366f1, #818cf8); }
+    .vc-2 { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); }
+    .vc-2::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .vc-3 { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); }
+    .vc-3::before { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+    .vc-4 { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); }
+    .vc-4::before { background: linear-gradient(90deg, #3b82f6, #93c5fd); }
+    .vc-5 { background: rgba(244,63,94,0.08); border: 1px solid rgba(244,63,94,0.2); }
+    .vc-5::before { background: linear-gradient(90deg, #f43f5e, #fda4af); }
+    .vc-6 { background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); }
+    .vc-6::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+    .vertical-icon { font-size: 28px; margin-bottom: 14px; }
+    .vertical-card h4 { font-size: 14px; font-weight: 700; color: #f1f5f9; margin-bottom: 8px; }
+    .vertical-card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
+
+    /* User Type */
+    .user-type-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .user-tab { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+    .user-tab-public   { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
+    .user-tab-admin    { background: rgba(244,63,94,0.12);  color: #fda4af; border: 1px solid rgba(244,63,94,0.25); }
+    .user-tab-employer { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.25); }
+    .user-tab-candidate{ background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.25); }
+
+    /* Flow blocks */
+    .flow-block { margin-bottom: 20px; border-radius: 14px; overflow: hidden; }
+    .flow-block-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .flow-block-header h3 { margin-bottom: 0; font-size: 16px; }
+    .flow-block-body { padding: 0 20px 16px; }
+    .fb-public   { background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.18); }
+    .fb-admin    { background: rgba(244,63,94,0.06);  border: 1px solid rgba(244,63,94,0.18); }
+    .fb-employer { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.18); }
+    .fb-candidate{ background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.18); }
+    .fb-public .flow-block-header    { border-bottom: 1px solid rgba(99,102,241,0.15); }
+    .fb-admin .flow-block-header     { border-bottom: 1px solid rgba(244,63,94,0.15); }
+    .fb-employer .flow-block-header  { border-bottom: 1px solid rgba(245,158,11,0.15); }
+    .fb-candidate .flow-block-header { border-bottom: 1px solid rgba(16,185,129,0.15); }
+    .flow-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Screen list */
+    .screen-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+    .screen-item { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 12px; font-size: 12px; }
+    .screen-code { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #64748b; flex-shrink: 0; }
+    .screen-name { color: #cbd5e1; flex: 1; }
+
+    /* Stack layers */
+    .stack-layer { border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; }
+    .sl-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-chip { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 8px; }
+    .sl-client  { background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.2); }
+    .sl-client .sl-label { color: #818cf8; }
+    .sl-client .stack-chip { background: rgba(99,102,241,0.12); color: #c7d2fe; }
+    .sl-mobile  { background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.2); }
+    .sl-mobile .sl-label { color: #c4b5fd; }
+    .sl-mobile .stack-chip { background: rgba(167,139,250,0.1); color: #ddd6fe; }
+    .sl-backend { background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.2); }
+    .sl-backend .sl-label { color: #67e8f9; }
+    .sl-backend .stack-chip { background: rgba(6,182,212,0.12); color: #a5f3fc; }
+    .sl-data    { background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.2); }
+    .sl-data .sl-label { color: #34d399; }
+    .sl-data .stack-chip { background: rgba(16,185,129,0.12); color: #a7f3d0; }
+    .sl-ai      { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); }
+    .sl-ai .sl-label { color: #fcd34d; }
+    .sl-ai .stack-chip { background: rgba(245,158,11,0.12); color: #fde68a; }
+    .sl-infra   { background: rgba(244,63,94,0.07); border: 1px solid rgba(244,63,94,0.2); }
+    .sl-infra .sl-label { color: #fda4af; }
+    .sl-infra .stack-chip { background: rgba(244,63,94,0.12); color: #fecdd3; }
+
+    /* Architecture diagram */
+    .arch-diagram { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.8; overflow-x: auto; color: #94a3b8; white-space: pre; }
+    .arch-layer { color: #818cf8; font-weight: 700; }
+    .arch-green { color: #34d399; }
+    .arch-blue  { color: #67e8f9; }
+    .arch-amber { color: #fcd34d; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 0; width: 2px; background: linear-gradient(180deg, #6366f1 0%, #06b6d4 50%, #10b981 100%); border-radius: 1px; }
+    .tl-item { position: relative; margin-bottom: 32px; }
+    .tl-dot { position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #1e293b; border: 2px solid; box-shadow: 0 0 10px currentColor; }
+    .tl-header { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+    .tl-phase { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #64748b; }
+    .tl-title { font-size: 15px; font-weight: 700; color: #e2e8f0; }
+    .tl-duration { margin-left: auto; font-size: 13px; font-weight: 700; color: #38bdf8; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); padding: 2px 12px; border-radius: 100px; }
+    .tl-desc { font-size: 13px; color: #94a3b8; line-height: 1.6; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+    /* MVP */
+    .mvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 720px) { .mvp-grid { grid-template-columns: 1fr; } }
+    .mvp-card { border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+    .mvp-card.featured::after { content: 'RECOMMENDED'; position: absolute; top: 14px; right: 14px; font-size: 9px; font-weight: 800; letter-spacing: 0.12em; color: #0a0c14; background: #818cf8; padding: 4px 10px; border-radius: 100px; }
+    .mvp-a { background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.25); }
+    .mvp-b { background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.25); }
+    .mvp-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .mvp-a .mvp-label { color: #818cf8; }
+    .mvp-b .mvp-label { color: #34d399; }
+    .mvp-title { font-size: 22px; font-weight: 800; color: #f1f5f9; margin-bottom: 6px; }
+    .mvp-time { font-size: 36px; font-weight: 900; line-height: 1; margin: 16px 0 4px; }
+    .mvp-a .mvp-time { color: #818cf8; }
+    .mvp-b .mvp-time { color: #34d399; }
+    .mvp-time-sub { font-size: 12px; color: #64748b; margin-bottom: 20px; }
+    .mvp-list { list-style: none; }
+    .mvp-list li { font-size: 13px; color: #94a3b8; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 8px; }
+    .mvp-a .mvp-list li::before { content: '→'; color: #6366f1; flex-shrink: 0; font-weight: 700; }
+    .mvp-b .mvp-list li::before { content: '→'; color: #10b981; flex-shrink: 0; font-weight: 700; }
+
+    /* Cost table */
+    .cost-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .cost-table th { text-align: left; padding: 12px 16px; background: rgba(255,255,255,0.04); color: #94a3b8; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .cost-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #cbd5e1; vertical-align: top; }
+    .cost-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .cost-price { color: #a5b4fc; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+    .cost-section-row td { background: rgba(99,102,241,0.05); color: #818cf8; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 16px; }
+    .cost-total td { background: rgba(16,185,129,0.05); color: #34d399; font-weight: 700; border-top: 2px solid rgba(16,185,129,0.3); }
+    .cost-total .cost-price { color: #34d399; font-size: 15px; }
+
+    /* Summary bar */
+    .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 28px; background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(16,185,129,0.08)); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; margin-bottom: 40px; }
+    .sb-item { text-align: center; }
+    .sb-val { font-size: 30px; font-weight: 900; color: #f1f5f9; display: block; }
+    .sb-lbl { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+    /* Feature grid */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .feature-item { display: flex; gap: 14px; padding: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+    .feature-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .feature-text h4 { font-size: 13px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
+    .feature-text p { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+    /* Cost tiers */
+    .cost-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+    .cost-tier { padding: 18px 20px; border-radius: 12px; }
+
+    footer { padding: 48px 32px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    footer p { font-size: 13px; color: #475569; }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Product &amp; Engineering Documentation · v1.0</div>
+  <h1>Rizza Platform</h1>
+  <p class="subtitle">Full Architecture, User Flows, Tech Stack, MVP Plan &amp; Infrastructure Cost — Web + Mobile</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="val">4</span><span class="lbl">User Types</span></div>
+    <div class="cover-meta-item"><span class="val">236</span><span class="lbl">Screen States</span></div>
+    <div class="cover-meta-item"><span class="val">12</span><span class="lbl">Core Flows</span></div>
+    <div class="cover-meta-item"><span class="val">Web + iOS + Android</span><span class="lbl">Platforms</span></div>
+    <div class="cover-meta-item"><span class="val">2026</span><span class="lbl">Build Year</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#verticals">Product</a>
+    <a href="#users">User Types</a>
+    <a href="#screens">All Screens</a>
+    <a href="#techstack">Tech Stack</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#mvp">MVP Plan</a>
+    <a href="#costs">Infrastructure Cost</a>
+  </div>
+</nav>
+
+<!-- 01 OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <span class="section-tag">01 — Overview</span>
+    <h2>What is <span>Rizza</span>?</h2>
+    <p class="section-lead">Rizza is an AI-native talent marketplace combining verified candidate profiles, behavioral assessments, a smart ATS, and gamified hiring — all in one platform for both web and mobile.</p>
+    <div class="summary-bar">
+      <div class="sb-item"><span class="sb-val">236</span><span class="sb-lbl">Total Screens</span></div>
+      <div class="sb-item"><span class="sb-val">28</span><span class="sb-lbl">Mobile-First Screens</span></div>
+      <div class="sb-item"><span class="sb-val">9</span><span class="sb-lbl">Backend Services</span></div>
+      <div class="sb-item"><span class="sb-val">5–6 mo</span><span class="sb-lbl">MVP Timeline</span></div>
+      <div class="sb-item"><span class="sb-val">12–15 mo</span><span class="sb-lbl">Full Platform</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-sm">
+        <p style="font-size:12px;color:#6366f1;font-weight:700;margin-bottom:8px">LinkedIn-Style Identity</p>
+        <p style="font-size:13px;color:#94a3b8">Rich candidate Life Pages with STAR storytelling, portfolio proof, and AI-assisted narrative building.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#10b981;font-weight:700;margin-bottom:8px">AI Job DNA Matching</p>
+        <p style="font-size:13px;color:#94a3b8">Multi-signal match engine using must-haves, culture fit, ownership level, and motivation alignment.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#f59e0b;font-weight:700;margin-bottom:8px">Full ATS Pipeline</p>
+        <p style="font-size:13px;color:#94a3b8">Kanban pipeline, video pitch player, scorecards, and offer generation in one place.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#06b6d4;font-weight:700;margin-bottom:8px">Digital Verification Vault</p>
+        <p style="font-size:13px;color:#94a3b8">Encrypted vault for verified IDs, degrees, salary slips, and references — with e-signature on offers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 VERTICALS -->
+<section id="verticals">
+  <div class="container">
+    <span class="section-tag">02 — Product Verticals</span>
+    <h2>Six Core <span>Product Areas</span></h2>
+    <p class="section-lead">Each vertical is a distinct product that works together as one platform — think LinkedIn + Greenhouse + HackerRank + Checkr, combined.</p>
+    <div class="vertical-grid">
+      <div class="vertical-card vc-1">
+        <div class="vertical-icon">🧬</div>
+        <h4>Professional Identity &amp; Storytelling</h4>
+        <p>Candidate "Life Page" with STAR story builder, proof-of-work portfolio, workstyle and motivation surveys, and AI-assisted narrative generation.</p>
+      </div>
+      <div class="vertical-card vc-2">
+        <div class="vertical-icon">📊</div>
+        <h4>Multi-Dimensional Assessments &amp; Benchmarking</h4>
+        <p>Technical coding sandbox, culture fit, persona, communication, and leadership tests. Global percentile benchmarks and verified skill badges.</p>
+      </div>
+      <div class="vertical-card vc-3">
+        <div class="vertical-icon">🎯</div>
+        <h4>AI Job DNA Matching Engine</h4>
+        <p>Employers define a "Job DNA" via a signal weight matrix. Candidates are scored and ranked using vector embeddings + weighted criteria across 7+ dimensions.</p>
+      </div>
+      <div class="vertical-card vc-4">
+        <div class="vertical-icon">🔀</div>
+        <h4>ATS &amp; Recruitment Pipeline</h4>
+        <p>Kanban pipeline, weekly curated matches, candidate comparison matrix, 1-minute video pitch player, interview scheduling, and scorecards.</p>
+      </div>
+      <div class="vertical-card vc-5">
+        <div class="vertical-icon">🔐</div>
+        <h4>Digital Vault &amp; Verified Offers</h4>
+        <p>Encrypted document vault, ID/education/salary verification via OCR, background check integrations, dynamic offer letter builder, and e-signing.</p>
+      </div>
+      <div class="vertical-card vc-6">
+        <div class="vertical-icon">🏆</div>
+        <h4>Brand Challenges &amp; Arcade</h4>
+        <p>Employer-sponsored hackathons, coding competitions, real-time leaderboards, gamified badge system, community feed, and talent pooling from challenge winners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 USER TYPES -->
+<section id="users">
+  <div class="container">
+    <span class="section-tag">03 — User Types</span>
+    <h2>4 User Types, <span>One Platform</span></h2>
+    <p class="section-lead">Each user type has a completely separate portal with distinct flows, permissions, and screen states.</p>
+    <div class="user-type-tabs">
+      <div class="user-tab user-tab-public">🌐 Public / Marketing <span class="tag tag-purple">12 screens</span></div>
+      <div class="user-tab user-tab-admin">🛡️ Super Admin <span class="tag tag-rose">25 screens</span></div>
+      <div class="user-tab user-tab-employer">🏢 Employer / ATS <span class="tag tag-amber">94 screens</span></div>
+      <div class="user-tab user-tab-candidate">👤 Candidate <span class="tag tag-green">105 screens</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-sm">
+        <p style="font-size:12px;color:#6366f1;font-weight:700;margin-bottom:8px">🌐 Public / Marketing</p>
+        <p style="font-size:13px;color:#94a3b8">Unauthenticated marketing site: Homepage, candidate &amp; employer landing pages, pricing, blog, help center, legal pages, and 404. SSR via Next.js for full SEO.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#f43f5e;font-weight:700;margin-bottom:8px">🛡️ Super Admin</p>
+        <p style="font-size:13px;color:#94a3b8">Internal operations: user management, KYC, skills/role taxonomy, question bank, assessment builder, trust &amp; safety, job moderation, revenue dashboards, and audit logs.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#f59e0b;font-weight:700;margin-bottom:8px">🏢 Employer / Recruiter</p>
+        <p style="font-size:13px;color:#94a3b8">Full recruitment lifecycle: company setup, Job DNA Studio, ATS Kanban, interview management, verification oversight, offer generation, and analytics. 28 screens have dedicated mobile layouts.</p>
+      </div>
+      <div class="card-sm">
+        <p style="font-size:12px;color:#10b981;font-weight:700;margin-bottom:8px">👤 Candidate</p>
+        <p style="font-size:13px;color:#94a3b8">Full career platform: profile, STAR storytelling, assessments, score benchmarking, job matching, applications, video pitch, interviews, verification, arcade, and portfolio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ALL SCREENS -->
+<section id="screens">
+  <div class="container">
+    <span class="section-tag">04 — Complete Screen Inventory</span>
+    <h2>All <span>236 Screens</span> Mapped</h2>
+    <p class="section-lead">Every screen from the FigJam board, categorized by user type and flow. Zero omissions.</p>
+
+    <!-- PUBLIC -->
+    <div class="flow-block fb-public" style="margin-bottom:24px">
+      <div class="flow-block-header">
+        <div class="flow-dot" style="background:#6366f1"></div>
+        <h3>🌐 Public &amp; Marketing Suite</h3>
+        <span class="tag tag-purple">W-01 → W-12 · 12 screens</span>
+      </div>
+      <div class="flow-block-body" style="padding-top:16px">
+        <div class="screen-list">
+          <div class="screen-item"><span class="screen-code">W-01</span><span class="screen-name">Homepage</span></div>
+          <div class="screen-item"><span class="screen-code">W-02</span><span class="screen-name">Candidate Landing Page</span></div>
+          <div class="screen-item"><span class="screen-code">W-03</span><span class="screen-name">Employer Landing Page</span></div>
+          <div class="screen-item"><span class="screen-code">W-04</span><span class="screen-name">Pricing Plans</span></div>
+          <div class="screen-item"><span class="screen-code">W-05</span><span class="screen-name">Help Center FAQ</span></div>
+          <div class="screen-item"><span class="screen-code">W-06</span><span class="screen-name">About Company</span></div>
+          <div class="screen-item"><span class="screen-code">W-07</span><span class="screen-name">Blog &amp; Resources Index</span></div>
+          <div class="screen-item"><span class="screen-code">W-08</span><span class="screen-name">Contact / Demo Request</span></div>
+          <div class="screen-item"><span class="screen-code">W-09</span><span class="screen-name">Terms of Service</span></div>
+          <div class="screen-item"><span class="screen-code">W-10</span><span class="screen-name">Privacy Policy</span></div>
+          <div class="screen-item"><span class="screen-code">W-11</span><span class="screen-name">Cookie Consent Banner</span></div>
+          <div class="screen-item"><span class="screen-code">W-12</span><span class="screen-name">404 Error Page</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN -->
+    <div class="flow-block fb-admin" style="margin-bottom:24px">
+      <div class="flow-block-header">
+        <div class="flow-dot" style="background:#f43f5e"></div>
+        <h3>🛡️ Super Admin &amp; Operations Suite</h3>
+        <span class="tag tag-rose">A-01 → A-25 · 25 screens</span>
+      </div>
+      <div class="flow-block-body" style="padding-top:16px">
+        <div class="screen-list">
+          <div class="screen-item"><span class="screen-code">A-01</span><span class="screen-name">Admin Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">A-02</span><span class="screen-name">User Management</span></div>
+          <div class="screen-item"><span class="screen-code">A-03</span><span class="screen-name">Employer Verification (KYC)</span></div>
+          <div class="screen-item"><span class="screen-code">A-04</span><span class="screen-name">Skills Taxonomy Editor</span></div>
+          <div class="screen-item"><span class="screen-code">A-05</span><span class="screen-name">Role Taxonomy Editor</span></div>
+          <div class="screen-item"><span class="screen-code">A-06</span><span class="screen-name">Question Bank</span></div>
+          <div class="screen-item"><span class="screen-code">A-07</span><span class="screen-name">Assessment Builder</span></div>
+          <div class="screen-item"><span class="screen-code">A-08</span><span class="screen-name">Assessment Assignment Rules</span></div>
+          <div class="screen-item"><span class="screen-code">A-09</span><span class="screen-name">Assessment Performance Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">A-10</span><span class="screen-name">Benchmark Management</span></div>
+          <div class="screen-item"><span class="screen-code">A-11</span><span class="screen-name">Brand Challenge Moderation</span></div>
+          <div class="screen-item"><span class="screen-code">A-12</span><span class="screen-name">Verification Monitoring</span></div>
+          <div class="screen-item"><span class="screen-code">A-13</span><span class="screen-name">Content Management (CMS)</span></div>
+          <div class="screen-item"><span class="screen-code">A-14</span><span class="screen-name">Notifications &amp; Nudges</span></div>
+          <div class="screen-item"><span class="screen-code">A-15</span><span class="screen-name">Reports &amp; Analytics</span></div>
+          <div class="screen-item"><span class="screen-code">A-16</span><span class="screen-name">Support Ticket Queue</span></div>
+          <div class="screen-item"><span class="screen-code">A-17</span><span class="screen-name">Support Ticket Detail</span></div>
+          <div class="screen-item"><span class="screen-code">A-18</span><span class="screen-name">Trust &amp; Safety Queue</span></div>
+          <div class="screen-item"><span class="screen-code">A-19</span><span class="screen-name">Trust Case Detail</span></div>
+          <div class="screen-item"><span class="screen-code">A-20</span><span class="screen-name">Job Moderation Queue</span></div>
+          <div class="screen-item"><span class="screen-code">A-21</span><span class="screen-name">Employer Account Management</span></div>
+          <div class="screen-item"><span class="screen-code">A-22</span><span class="screen-name">Revenue &amp; Subscriptions</span></div>
+          <div class="screen-item"><span class="screen-code">A-23</span><span class="screen-name">Audit Log Viewer</span></div>
+          <div class="screen-item"><span class="screen-code">A-24</span><span class="screen-name">Platform Configuration</span></div>
+          <div class="screen-item"><span class="screen-code">A-25</span><span class="screen-name">Integrations Management</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYER -->
+    <div class="flow-block fb-employer" style="margin-bottom:24px">
+      <div class="flow-block-header">
+        <div class="flow-dot" style="background:#f59e0b"></div>
+        <h3>🏢 Employer &amp; ATS Suite</h3>
+        <span class="tag tag-amber">E-01 → E-94 · 94 screens · 12 flows</span>
+      </div>
+      <div class="flow-block-body" style="padding-top:16px">
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 1 — Account Onboarding (E-01 to E-09)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-01</span><span class="screen-name">Sign Up / Login</span></div>
+          <div class="screen-item"><span class="screen-code">E-02</span><span class="screen-name">Select User Role</span></div>
+          <div class="screen-item"><span class="screen-code">E-03</span><span class="screen-name">Company Basics</span></div>
+          <div class="screen-item"><span class="screen-code">E-04</span><span class="screen-name">Company Address</span></div>
+          <div class="screen-item"><span class="screen-code">E-05</span><span class="screen-name">Company Profile</span></div>
+          <div class="screen-item"><span class="screen-code">E-06</span><span class="screen-name">Products &amp; Services</span></div>
+          <div class="screen-item"><span class="screen-code">E-07</span><span class="screen-name">Company Links</span></div>
+          <div class="screen-item"><span class="screen-code">E-08</span><span class="screen-name">Upload Company Logo</span></div>
+          <div class="screen-item"><span class="screen-code">E-09</span><span class="screen-name">Employer Setup Review</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 2 — Dashboard &amp; Team (E-10 to E-14)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-10</span><span class="screen-name">Employer Dashboard 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-11</span><span class="screen-name">Team Members</span></div>
+          <div class="screen-item"><span class="screen-code">E-12</span><span class="screen-name">Invite Team Member</span></div>
+          <div class="screen-item"><span class="screen-code">E-13</span><span class="screen-name">Assign Roles &amp; Permissions</span></div>
+          <div class="screen-item"><span class="screen-code">E-14</span><span class="screen-name">Notifications &amp; Nudges 📱</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 3 — Job Creation &amp; Job DNA Studio (E-15 to E-34)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-15</span><span class="screen-name">Create New Job</span></div>
+          <div class="screen-item"><span class="screen-code">E-16</span><span class="screen-name">Job Basics</span></div>
+          <div class="screen-item"><span class="screen-code">E-17</span><span class="screen-name">Set Hiring Budget</span></div>
+          <div class="screen-item"><span class="screen-code">E-18</span><span class="screen-name">Assign Hiring Manager</span></div>
+          <div class="screen-item"><span class="screen-code">E-19</span><span class="screen-name">Experience Requirements</span></div>
+          <div class="screen-item"><span class="screen-code">E-20</span><span class="screen-name">Must-Have Skills</span></div>
+          <div class="screen-item"><span class="screen-code">E-21</span><span class="screen-name">Good-to-Have Skills</span></div>
+          <div class="screen-item"><span class="screen-code">E-22</span><span class="screen-name">Bonus Skills</span></div>
+          <div class="screen-item"><span class="screen-code">E-23</span><span class="screen-name">Culture &amp; Behavioral Fit</span></div>
+          <div class="screen-item"><span class="screen-code">E-24</span><span class="screen-name">Ownership &amp; Autonomy Level</span></div>
+          <div class="screen-item"><span class="screen-code">E-25</span><span class="screen-name">Motivation Drivers</span></div>
+          <div class="screen-item"><span class="screen-code">E-26</span><span class="screen-name">Hiring Manager Work Style</span></div>
+          <div class="screen-item"><span class="screen-code">E-27</span><span class="screen-name">Recommended Assessments</span></div>
+          <div class="screen-item"><span class="screen-code">E-28</span><span class="screen-name">AI-Generated Job Description</span></div>
+          <div class="screen-item"><span class="screen-code">E-29</span><span class="screen-name">Edit &amp; Approve JD</span></div>
+          <div class="screen-item"><span class="screen-code">E-30</span><span class="screen-name">Job DNA Radar Chart</span></div>
+          <div class="screen-item"><span class="screen-code">E-31</span><span class="screen-name">Adjust Signal Weights</span></div>
+          <div class="screen-item"><span class="screen-code">E-32</span><span class="screen-name">Save DNA Template</span></div>
+          <div class="screen-item"><span class="screen-code">E-33</span><span class="screen-name">Publish Job</span></div>
+          <div class="screen-item"><span class="screen-code">E-34</span><span class="screen-name">Job Published Confirmation</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 4 — ATS Candidate Pipeline (E-35 to E-46)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-35</span><span class="screen-name">Manage Jobs 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-36</span><span class="screen-name">Job Detail Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">E-37</span><span class="screen-name">Candidate Pipeline (Kanban)</span></div>
+          <div class="screen-item"><span class="screen-code">E-38</span><span class="screen-name">Weekly Curated Matches 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-39</span><span class="screen-name">Candidate Match Cards 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-40</span><span class="screen-name">Why This Candidate Fits 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-41</span><span class="screen-name">Full Candidate Profile 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-42</span><span class="screen-name">Candidate Benchmark View 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-43</span><span class="screen-name">Shortlist Candidate 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-44</span><span class="screen-name">Reject Candidate 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-45</span><span class="screen-name">Shortlist Dashboard 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-46</span><span class="screen-name">Compare Candidates Matrix</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 5 — Interviews &amp; Selection (E-47 to E-56)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-47</span><span class="screen-name">Schedule Interview</span></div>
+          <div class="screen-item"><span class="screen-code">E-48</span><span class="screen-name">Assign Interviewers</span></div>
+          <div class="screen-item"><span class="screen-code">E-49</span><span class="screen-name">Calendar Availability</span></div>
+          <div class="screen-item"><span class="screen-code">E-50</span><span class="screen-name">Interview Round Tracker 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-51</span><span class="screen-name">1-Min Video Pitch Player 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-52</span><span class="screen-name">Interview Feedback Scorecards 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-53</span><span class="screen-name">Consolidated Feedback View 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-54</span><span class="screen-name">Request Another Round</span></div>
+          <div class="screen-item"><span class="screen-code">E-55</span><span class="screen-name">Mark Candidate as Selected 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-56</span><span class="screen-name">Executive Approval 📱</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 6 — Verification, Offer &amp; Closure (E-57 to E-66)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-57</span><span class="screen-name">Notify Candidate 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-58</span><span class="screen-name">Document Checklist 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-59</span><span class="screen-name">Identity Verification Status 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-60</span><span class="screen-name">Reference Verification Status 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-61</span><span class="screen-name">Verified Candidate Profile 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-62</span><span class="screen-name">Generate Offer Letter</span></div>
+          <div class="screen-item"><span class="screen-code">E-63</span><span class="screen-name">Offer Preview 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-64</span><span class="screen-name">Offer Status Tracker 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-65</span><span class="screen-name">Requisition Closure</span></div>
+          <div class="screen-item"><span class="screen-code">E-66</span><span class="screen-name">Replacement Workflow</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 7 — Analytics &amp; Intelligence (E-67 to E-73)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-67</span><span class="screen-name">Hiring Analytics Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">E-68</span><span class="screen-name">Funnel Analytics</span></div>
+          <div class="screen-item"><span class="screen-code">E-69</span><span class="screen-name">Time-to-Fill Analytics</span></div>
+          <div class="screen-item"><span class="screen-code">E-70</span><span class="screen-name">Match Quality Analytics</span></div>
+          <div class="screen-item"><span class="screen-code">E-71</span><span class="screen-name">Attrition Prediction</span></div>
+          <div class="screen-item"><span class="screen-code">E-72</span><span class="screen-name">Employer Feedback Loop</span></div>
+          <div class="screen-item"><span class="screen-code">E-73</span><span class="screen-name">Hire by Percentile</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 8 — Employer Branding &amp; Arcade (E-77 to E-83)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-77</span><span class="screen-name">Employer Culture Page</span></div>
+          <div class="screen-item"><span class="screen-code">E-78</span><span class="screen-name">Edit Culture Page</span></div>
+          <div class="screen-item"><span class="screen-code">E-79</span><span class="screen-name">Create Brand Challenge</span></div>
+          <div class="screen-item"><span class="screen-code">E-80</span><span class="screen-name">Challenge Rules &amp; Rewards</span></div>
+          <div class="screen-item"><span class="screen-code">E-81</span><span class="screen-name">Challenge Preview</span></div>
+          <div class="screen-item"><span class="screen-code">E-82</span><span class="screen-name">Challenge Performance Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">E-83</span><span class="screen-name">Challenge Talent Pool</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 9 — Candidate Discovery (E-84 to E-85)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-84</span><span class="screen-name">Candidate Search Feed</span></div>
+          <div class="screen-item"><span class="screen-code">E-85</span><span class="screen-name">Talent Pool 📱</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 10 — Billing &amp; Subscriptions (E-86 to E-90)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">E-86</span><span class="screen-name">Plans &amp; Pricing</span></div>
+          <div class="screen-item"><span class="screen-code">E-87</span><span class="screen-name">Current Plan &amp; Usage 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-88</span><span class="screen-name">Billing &amp; Payment Details</span></div>
+          <div class="screen-item"><span class="screen-code">E-89</span><span class="screen-name">Invoice History</span></div>
+          <div class="screen-item"><span class="screen-code">E-90</span><span class="screen-name">Upgrade / Downgrade Plan</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 11 &amp; 12 — Support &amp; Other (E-91 to E-94)</p>
+        <div class="screen-list">
+          <div class="screen-item"><span class="screen-code">E-91</span><span class="screen-name">Help Center Support 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-92</span><span class="screen-name">Ticket Status History 📱</span></div>
+          <div class="screen-item"><span class="screen-code">E-93</span><span class="screen-name">Company Public Preview</span></div>
+          <div class="screen-item"><span class="screen-code">E-94</span><span class="screen-name">Notification Preferences 📱</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CANDIDATE -->
+    <div class="flow-block fb-candidate">
+      <div class="flow-block-header">
+        <div class="flow-dot" style="background:#10b981"></div>
+        <h3>👤 Candidate Suite</h3>
+        <span class="tag tag-green">C-01 → C-105 · 105 screens · 10 flows</span>
+      </div>
+      <div class="flow-block-body" style="padding-top:16px">
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 1 — Entry &amp; Basic Profile (C-01 to C-10, C-94, C-95)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-01</span><span class="screen-name">Sign Up / Login</span></div>
+          <div class="screen-item"><span class="screen-code">C-02</span><span class="screen-name">Career Goal Setting</span></div>
+          <div class="screen-item"><span class="screen-code">C-03</span><span class="screen-name">Basic Profile Setup</span></div>
+          <div class="screen-item"><span class="screen-code">C-04</span><span class="screen-name">Role Preferences</span></div>
+          <div class="screen-item"><span class="screen-code">C-05</span><span class="screen-name">Home Dashboard</span></div>
+          <div class="screen-item"><span class="screen-code">C-06</span><span class="screen-name">Resume Upload</span></div>
+          <div class="screen-item"><span class="screen-code">C-05*</span><span class="screen-name">Resume Parsing Review</span></div>
+          <div class="screen-item"><span class="screen-code">C-07</span><span class="screen-name">Start My Story</span></div>
+          <div class="screen-item"><span class="screen-code">C-08</span><span class="screen-name">Profile Styling</span></div>
+          <div class="screen-item"><span class="screen-code">C-09</span><span class="screen-name">How Do You Work (Survey)</span></div>
+          <div class="screen-item"><span class="screen-code">C-10</span><span class="screen-name">What Excites You (Survey)</span></div>
+          <div class="screen-item"><span class="screen-code">C-94</span><span class="screen-name">Change Career Goal</span></div>
+          <div class="screen-item"><span class="screen-code">C-95</span><span class="screen-name">Help &amp; Support</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 2 — STAR Storyteller Studio / Life Page (C-11 to C-21, C-99 to C-105)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-11</span><span class="screen-name">Choose Story Challenge</span></div>
+          <div class="screen-item"><span class="screen-code">C-12</span><span class="screen-name">Situation Builder</span></div>
+          <div class="screen-item"><span class="screen-code">C-99</span><span class="screen-name">AI Help Panel</span></div>
+          <div class="screen-item"><span class="screen-code">C-13</span><span class="screen-name">Action Stage</span></div>
+          <div class="screen-item"><span class="screen-code">C-14</span><span class="screen-name">Outcome Stage</span></div>
+          <div class="screen-item"><span class="screen-code">C-15</span><span class="screen-name">Reflection Stage</span></div>
+          <div class="screen-item"><span class="screen-code">C-16</span><span class="screen-name">Story Preview</span></div>
+          <div class="screen-item"><span class="screen-code">C-17</span><span class="screen-name">Edit &amp; Refine Story</span></div>
+          <div class="screen-item"><span class="screen-code">C-18</span><span class="screen-name">Add Another Story</span></div>
+          <div class="screen-item"><span class="screen-code">C-19</span><span class="screen-name">My Rizza Profile (Master)</span></div>
+          <div class="screen-item"><span class="screen-code">C-20</span><span class="screen-name">Edit My Life Page</span></div>
+          <div class="screen-item"><span class="screen-code">C-21</span><span class="screen-name">Profile Completion Guidance</span></div>
+          <div class="screen-item"><span class="screen-code">C-101</span><span class="screen-name">Module: Who I Am</span></div>
+          <div class="screen-item"><span class="screen-code">C-102</span><span class="screen-name">Module: What I'm Good At</span></div>
+          <div class="screen-item"><span class="screen-code">C-103</span><span class="screen-name">Module: What I've Done</span></div>
+          <div class="screen-item"><span class="screen-code">C-104</span><span class="screen-name">Module: How I Work</span></div>
+          <div class="screen-item"><span class="screen-code">C-105</span><span class="screen-name">Module: What I Want Next</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 3 — Assessments Hub &amp; Testing Engine (C-22 to C-34)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-22</span><span class="screen-name">Assessment Hub</span></div>
+          <div class="screen-item"><span class="screen-code">C-23</span><span class="screen-name">Assessment Detail</span></div>
+          <div class="screen-item"><span class="screen-code">C-24</span><span class="screen-name">Assessment Instructions</span></div>
+          <div class="screen-item"><span class="screen-code">C-25</span><span class="screen-name">Technical Coding Sandbox</span></div>
+          <div class="screen-item"><span class="screen-code">C-26</span><span class="screen-name">Culture Fit Assessment</span></div>
+          <div class="screen-item"><span class="screen-code">C-27</span><span class="screen-name">Persona Assessment</span></div>
+          <div class="screen-item"><span class="screen-code">C-28</span><span class="screen-name">Communication Assessment</span></div>
+          <div class="screen-item"><span class="screen-code">C-29</span><span class="screen-name">Leadership Assessment</span></div>
+          <div class="screen-item"><span class="screen-code">C-30</span><span class="screen-name">Assessment Progress &amp; Timer</span></div>
+          <div class="screen-item"><span class="screen-code">C-31</span><span class="screen-name">Assessment Completion</span></div>
+          <div class="screen-item"><span class="screen-code">C-32</span><span class="screen-name">Assessment Result Diagnostic</span></div>
+          <div class="screen-item"><span class="screen-code">C-33</span><span class="screen-name">Verified Skill Badge</span></div>
+          <div class="screen-item"><span class="screen-code">C-34</span><span class="screen-name">Recommended Next Assessment</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 4 — Score &amp; Benchmark Studio (C-35 to C-43)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-35</span><span class="screen-name">My Profile Score Gauge</span></div>
+          <div class="screen-item"><span class="screen-code">C-36</span><span class="screen-name">Score Breakdown</span></div>
+          <div class="screen-item"><span class="screen-code">C-37</span><span class="screen-name">Percentile vs Peers</span></div>
+          <div class="screen-item"><span class="screen-code">C-38</span><span class="screen-name">Improve Score Plan</span></div>
+          <div class="screen-item"><span class="screen-code">C-39</span><span class="screen-name">Score History Chart</span></div>
+          <div class="screen-item"><span class="screen-code">C-40</span><span class="screen-name">Retake Cooldown</span></div>
+          <div class="screen-item"><span class="screen-code">C-41</span><span class="screen-name">Share My Profile</span></div>
+          <div class="screen-item"><span class="screen-code">C-42</span><span class="screen-name">Download Benchmark PDF</span></div>
+          <div class="screen-item"><span class="screen-code">C-43</span><span class="screen-name">Benchmark Pro Subscription</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 5 — Job Discovery &amp; Matching (C-44 to C-55, C-64*)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-44</span><span class="screen-name">Recommended Jobs Feed</span></div>
+          <div class="screen-item"><span class="screen-code">C-45</span><span class="screen-name">Search &amp; Browse Jobs</span></div>
+          <div class="screen-item"><span class="screen-code">C-46</span><span class="screen-name">Job Detail Page</span></div>
+          <div class="screen-item"><span class="screen-code">C-47</span><span class="screen-name">My Match Score for This Job</span></div>
+          <div class="screen-item"><span class="screen-code">C-48</span><span class="screen-name">Match Score Breakdown</span></div>
+          <div class="screen-item"><span class="screen-code">C-49</span><span class="screen-name">1-Click Apply</span></div>
+          <div class="screen-item"><span class="screen-code">C-50</span><span class="screen-name">Application Confirmation</span></div>
+          <div class="screen-item"><span class="screen-code">C-51</span><span class="screen-name">My Applications</span></div>
+          <div class="screen-item"><span class="screen-code">C-52</span><span class="screen-name">Application Status Tracker</span></div>
+          <div class="screen-item"><span class="screen-code">C-53</span><span class="screen-name">Employer Viewed Alert</span></div>
+          <div class="screen-item"><span class="screen-code">C-54</span><span class="screen-name">Shortlisted Notification</span></div>
+          <div class="screen-item"><span class="screen-code">C-55</span><span class="screen-name">Rejection Feedback</span></div>
+          <div class="screen-item"><span class="screen-code">C-64*</span><span class="screen-name">Saved Jobs List</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 6 — Interview, Verification &amp; Offer (C-56 to C-71)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-56</span><span class="screen-name">Record 1-Min Video Pitch</span></div>
+          <div class="screen-item"><span class="screen-code">C-57</span><span class="screen-name">Video Preview &amp; Submit</span></div>
+          <div class="screen-item"><span class="screen-code">C-58</span><span class="screen-name">Select Interview Slot</span></div>
+          <div class="screen-item"><span class="screen-code">C-59</span><span class="screen-name">Interview Details</span></div>
+          <div class="screen-item"><span class="screen-code">C-60</span><span class="screen-name">Interview Reminder</span></div>
+          <div class="screen-item"><span class="screen-code">C-61</span><span class="screen-name">Interview Round Status</span></div>
+          <div class="screen-item"><span class="screen-code">C-62</span><span class="screen-name">Onboarding Document Checklist</span></div>
+          <div class="screen-item"><span class="screen-code">C-63</span><span class="screen-name">Upload Identity Documents</span></div>
+          <div class="screen-item"><span class="screen-code">C-64</span><span class="screen-name">Upload Education Documents</span></div>
+          <div class="screen-item"><span class="screen-code">C-65</span><span class="screen-name">Upload Salary Documents</span></div>
+          <div class="screen-item"><span class="screen-code">C-66</span><span class="screen-name">Submit References</span></div>
+          <div class="screen-item"><span class="screen-code">C-67</span><span class="screen-name">My Digital Vault</span></div>
+          <div class="screen-item"><span class="screen-code">C-68</span><span class="screen-name">Verification Status</span></div>
+          <div class="screen-item"><span class="screen-code">C-69</span><span class="screen-name">Offer Letter Review</span></div>
+          <div class="screen-item"><span class="screen-code">C-70</span><span class="screen-name">Accept / Reject Offer (E-Sign)</span></div>
+          <div class="screen-item"><span class="screen-code">C-71</span><span class="screen-name">Joining Confirmation</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 7 — Brand Arcade &amp; Engagement (C-72 to C-80, C-93, C-100)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-72</span><span class="screen-name">Arcade Home</span></div>
+          <div class="screen-item"><span class="screen-code">C-73</span><span class="screen-name">Challenge Categories</span></div>
+          <div class="screen-item"><span class="screen-code">C-74</span><span class="screen-name">Challenge Detail</span></div>
+          <div class="screen-item"><span class="screen-code">C-75</span><span class="screen-name">Participate / Submit</span></div>
+          <div class="screen-item"><span class="screen-code">C-76</span><span class="screen-name">Challenge Result</span></div>
+          <div class="screen-item"><span class="screen-code">C-77</span><span class="screen-name">Leaderboards</span></div>
+          <div class="screen-item"><span class="screen-code">C-78</span><span class="screen-name">Badges &amp; Achievements</span></div>
+          <div class="screen-item"><span class="screen-code">C-79</span><span class="screen-name">Community Feed</span></div>
+          <div class="screen-item"><span class="screen-code">C-80</span><span class="screen-name">Brand Challenge Microsite</span></div>
+          <div class="screen-item"><span class="screen-code">C-93</span><span class="screen-name">Public Profile Preview</span></div>
+          <div class="screen-item"><span class="screen-code">C-100</span><span class="screen-name">Vanity URL (rizza.com/@user)</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 8 — Portfolio &amp; Proof of Work (C-81 to C-85)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-81</span><span class="screen-name">Portfolio Gallery</span></div>
+          <div class="screen-item"><span class="screen-code">C-82</span><span class="screen-name">Add Proof — Choose Type</span></div>
+          <div class="screen-item"><span class="screen-code">C-83</span><span class="screen-name">Upload or Link Proof Asset</span></div>
+          <div class="screen-item"><span class="screen-code">C-84</span><span class="screen-name">Proof Detail &amp; Tagging</span></div>
+          <div class="screen-item"><span class="screen-code">C-85</span><span class="screen-name">Feature &amp; Reorder Proof</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 9 — Settings &amp; Privacy (C-86 to C-92)</p>
+        <div class="screen-list" style="margin-bottom:20px">
+          <div class="screen-item"><span class="screen-code">C-86</span><span class="screen-name">Settings Hub</span></div>
+          <div class="screen-item"><span class="screen-code">C-87</span><span class="screen-name">Profile Visibility Controls</span></div>
+          <div class="screen-item"><span class="screen-code">C-88</span><span class="screen-name">Notification Preferences</span></div>
+          <div class="screen-item"><span class="screen-code">C-89</span><span class="screen-name">Security &amp; 2FA</span></div>
+          <div class="screen-item"><span class="screen-code">C-90</span><span class="screen-name">Data Export &amp; GDPR Consent</span></div>
+          <div class="screen-item"><span class="screen-code">C-91</span><span class="screen-name">Deactivate Account</span></div>
+          <div class="screen-item"><span class="screen-code">C-92</span><span class="screen-name">Delete Account (GDPR Erasure)</span></div>
+        </div>
+
+        <p style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Flow 10 — Notifications</p>
+        <div class="screen-list">
+          <div class="screen-item"><span class="screen-code">C-92*</span><span class="screen-name">Notification Inbox (In-App)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 TECH STACK -->
+<section id="techstack">
+  <div class="container">
+    <span class="section-tag">05 — Tech Stack</span>
+    <h2>Technology <span>Stack</span></h2>
+    <p class="section-lead">Chosen for AI-assisted development speed, type safety, scalability, and long-term maintainability. The entire codebase lives in one Turborepo monorepo.</p>
+    <div class="stack-layer sl-client">
+      <div class="sl-label">Web — Client Layer</div>
+      <div class="stack-chips">
+        <span class="stack-chip">Next.js 14+ (App Router)</span>
+        <span class="stack-chip">React 19</span>
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">Tailwind CSS</span>
+        <span class="stack-chip">Radix UI</span>
+        <span class="stack-chip">Framer Motion</span>
+        <span class="stack-chip">TanStack Query</span>
+        <span class="stack-chip">Zustand</span>
+      </div>
+    </div>
+    <div class="stack-layer sl-mobile">
+      <div class="sl-label">Mobile — React Native</div>
+      <div class="stack-chips">
+        <span class="stack-chip">React Native (Expo SDK 52)</span>
+        <span class="stack-chip">Expo Camera (Video Pitch)</span>
+        <span class="stack-chip">Expo Notifications (Push)</span>
+        <span class="stack-chip">React Navigation</span>
+        <span class="stack-chip">Shared TypeScript Types</span>
+        <span class="stack-chip">iOS + Android</span>
+      </div>
+    </div>
+    <div class="stack-layer sl-backend">
+      <div class="sl-label">Backend API</div>
+      <div class="stack-chips">
+        <span class="stack-chip">NestJS (TypeScript)</span>
+        <span class="stack-chip">tRPC / GraphQL / REST</span>
+        <span class="stack-chip">WebSockets (Socket.io)</span>
+        <span class="stack-chip">BullMQ (Job Queues)</span>
+        <span class="stack-chip">Clerk / Auth0 (RBAC)</span>
+        <span class="stack-chip">Stripe (Billing)</span>
+      </div>
+    </div>
+    <div class="stack-layer sl-data">
+      <div class="sl-label">Data Layer</div>
+      <div class="stack-chips">
+        <span class="stack-chip">PostgreSQL 16 (Primary DB)</span>
+        <span class="stack-chip">pgvector (Embeddings)</span>
+        <span class="stack-chip">Redis (Cache + Leaderboards)</span>
+        <span class="stack-chip">Prisma ORM</span>
+        <span class="stack-chip">AWS S3 / Cloudflare R2</span>
+        <span class="stack-chip">AWS MediaConvert (HLS Video)</span>
+      </div>
+    </div>
+    <div class="stack-layer sl-ai">
+      <div class="sl-label">AI &amp; Matching</div>
+      <div class="stack-chips">
+        <span class="stack-chip">OpenAI GPT-4o / Claude 3.5</span>
+        <span class="stack-chip">LangChain (Orchestration)</span>
+        <span class="stack-chip">pgvector Semantic Search</span>
+        <span class="stack-chip">FastAPI (AI Microservice)</span>
+        <span class="stack-chip">Weighted Signal Scoring</span>
+      </div>
+    </div>
+    <div class="stack-layer sl-infra">
+      <div class="sl-label">Infrastructure &amp; DevOps</div>
+      <div class="stack-chips">
+        <span class="stack-chip">AWS ECS Fargate + RDS</span>
+        <span class="stack-chip">Cloudflare CDN + WAF</span>
+        <span class="stack-chip">Docker + GitHub Actions</span>
+        <span class="stack-chip">Turborepo (Monorepo)</span>
+        <span class="stack-chip">Vercel (Frontend)</span>
+        <span class="stack-chip">Sentry + PostHog</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 ARCHITECTURE -->
+<section id="architecture">
+  <div class="container">
+    <span class="section-tag">06 — System Architecture</span>
+    <h2>How the <span>System Works</span></h2>
+    <p class="section-lead">Single Turborepo monorepo hosting Web, Mobile, and Backend. All share TypeScript types. Traffic flows through Cloudflare to API Gateway to 9 backend services.</p>
+    <div class="arch-diagram"><span class="arch-layer">CLIENT LAYER</span>
+  Web: Next.js 14                              Mobile: React Native (iOS + Android)
+  SSR for marketing pages                      Expo SDK — Camera, Push, Navigation
+  React SPA for dashboards                     Shares TypeScript types with Web + API
+         |                                              |
+         └──────────────────────┬───────────────────────┘
+                                |
+<span class="arch-layer">         CLOUDFLARE CDN + WAF + DDoS Protection + SSL</span>
+                                |
+<span class="arch-layer">         API GATEWAY — Auth, Rate Limiting, Routing</span>
+                                |
+         tRPC / GraphQL / REST / WebSockets
+                                |
+<span class="arch-layer">BACKEND SERVICES (NestJS Modular Monolith)</span>
+<span class="arch-green">  1. Auth &amp; RBAC Service</span>          <span class="arch-blue">  6. Media &amp; Video (S3 + HLS)</span>
+<span class="arch-green">  2. Candidate Profile + STAR</span>      <span class="arch-blue">  7. Verification + E-Sign</span>
+<span class="arch-green">  3. Assessment Engine</span>             <span class="arch-amber">  8. Arcade + Leaderboard (Redis)</span>
+<span class="arch-green">  4. AI Job DNA Matching (LLM)</span>     <span class="arch-amber">  9. Billing + Subscriptions (Stripe)</span>
+<span class="arch-green">  5. ATS Pipeline + Kanban</span>
+         |                  |                       |
+<span class="arch-layer"> PostgreSQL 16</span>       <span class="arch-layer">Redis Cluster</span>          <span class="arch-layer"> pgvector (DNA Embeddings)</span>
+ Primary Database     Cache + Queues +        Semantic Match Search
+ Multi-Tenant         Leaderboards (ZSET)     Cosine Similarity Ranking</div>
+
+    <div style="margin-top:24px" class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(99,102,241,0.12)">🔒</div>
+        <div class="feature-text"><h4>Multi-Tenant by Design</h4><p>All employer data is isolated by organization. Candidates are global. No data leakage between tenants.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(16,185,129,0.12)">⚡</div>
+        <div class="feature-text"><h4>Shared Types Monorepo</h4><p>Web, Mobile, and Backend share Zod schemas via Turborepo — no duplication, no drift, fully type-safe.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(245,158,11,0.12)">🧠</div>
+        <div class="feature-text"><h4>AI-Native Matching</h4><p>Profiles and Job DNA are embedded via OpenAI — cosine similarity + signal weighting returns ranked matches.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(6,182,212,0.12)">📹</div>
+        <div class="feature-text"><h4>Video Pitch Pipeline</h4><p>Client compresses → S3 pre-signed upload → AWS MediaConvert HLS → employer streams directly.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <span class="section-tag">07 — Development Timeline</span>
+    <h2>Build <span>Roadmap</span></h2>
+    <p class="section-lead">Using AI coding tools (Cursor, Copilot, v0, LLM agents) + pre-built component libraries, development runs at 2–3x traditional speed. All timelines assume full-time hours with AI-assisted development.</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#6366f1"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 1</span>
+          <span class="tl-title">Foundations, Monorepo &amp; Auth</span>
+          <span class="tl-duration">2 weeks</span>
+        </div>
+        <p class="tl-desc">Turborepo setup, Next.js 14, NestJS API, PostgreSQL schema, Docker, CI/CD, multi-tenant RBAC with Clerk/Auth0, base design system.</p>
+        <div class="tl-tags"><span class="tag tag-purple">Turborepo</span><span class="tag tag-blue">PostgreSQL</span><span class="tag tag-blue">Docker</span><span class="tag tag-purple">Auth/RBAC</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#818cf8"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 2</span>
+          <span class="tl-title">Public Marketing Website (W-01 to W-12)</span>
+          <span class="tl-duration">2 weeks</span>
+        </div>
+        <p class="tl-desc">All 12 SSR marketing pages: homepage, landing pages, pricing, blog, help center, legal pages, contact/demo booking, cookie consent, 404.</p>
+        <div class="tl-tags"><span class="tag tag-purple">Next.js SSR</span><span class="tag tag-green">12 screens</span><span class="tag tag-blue">SEO</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#3b82f6"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 3</span>
+          <span class="tl-title">Candidate Profile &amp; STAR Storyteller (C-01 to C-21, C-99 to C-105)</span>
+          <span class="tl-duration">4 weeks</span>
+        </div>
+        <p class="tl-desc">Onboarding wizard, 4-stage STAR story builder, AI writing assistant, Life Page view, 5 story modules, profile styling, workstyle and motivation surveys.</p>
+        <div class="tl-tags"><span class="tag tag-green">28 screens</span><span class="tag tag-amber">AI Assisted</span><span class="tag tag-blue">LLM Integration</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#06b6d4"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 4</span>
+          <span class="tl-title">Assessment Engine &amp; Benchmarks (C-22 to C-43, A-06 to A-09)</span>
+          <span class="tl-duration">4 weeks</span>
+        </div>
+        <p class="tl-desc">5-type timed assessment engine (coding sandbox, culture, persona, communication, leadership), psychometric scoring, percentile curves, badge minting, admin question bank.</p>
+        <div class="tl-tags"><span class="tag tag-green">22 screens</span><span class="tag tag-rose">Code Sandbox</span><span class="tag tag-amber">Scoring Engine</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#10b981"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 5</span>
+          <span class="tl-title">Employer Portal &amp; Job DNA Studio (E-01 to E-34)</span>
+          <span class="tl-duration">4 weeks</span>
+        </div>
+        <p class="tl-desc">Company onboarding, team seats, 20-step Job DNA Studio (skills, culture, ownership, motivation), signal weight sliders, AI JD generation, radar chart, template saving.</p>
+        <div class="tl-tags"><span class="tag tag-amber">34 screens</span><span class="tag tag-blue">AI JD Gen</span><span class="tag tag-purple">Radar Chart</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#f59e0b"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 6</span>
+          <span class="tl-title">ATS Pipeline, Matching &amp; Interviews (E-35 to E-56, C-45 to C-61)</span>
+          <span class="tl-duration">5 weeks</span>
+        </div>
+        <p class="tl-desc">Kanban ATS, weekly curated matches, AI match explanations, comparison matrix, 1-min video recorder &amp; player, interview scheduling, scorecards, executive approval flow.</p>
+        <div class="tl-tags"><span class="tag tag-amber">34 screens</span><span class="tag tag-rose">Kanban</span><span class="tag tag-cyan">Video</span><span class="tag tag-blue">Scheduling</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#f43f5e"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 7</span>
+          <span class="tl-title">Digital Vault, Verification &amp; Offers (E-57 to E-66, C-62 to C-71)</span>
+          <span class="tl-duration">3 weeks</span>
+        </div>
+        <p class="tl-desc">Encrypted document vault, OCR document parsing, background check integration, offer letter PDF builder, e-signature flow, offer acceptance and closure.</p>
+        <div class="tl-tags"><span class="tag tag-rose">20 screens</span><span class="tag tag-cyan">OCR / KYC</span><span class="tag tag-green">E-Sign</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#a855f7"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 8</span>
+          <span class="tl-title">Brand Arcade &amp; Candidate Portfolio (E-77 to E-83, C-72 to C-85)</span>
+          <span class="tl-duration">3 weeks</span>
+        </div>
+        <p class="tl-desc">Employer challenge creation, submission reviews, Redis leaderboards, gamified badges, community feed, candidate portfolio gallery with proof-of-work types.</p>
+        <div class="tl-tags"><span class="tag tag-amber">18 screens</span><span class="tag tag-rose">Redis Leaderboards</span><span class="tag tag-green">Badges</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#ec4899"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 9</span>
+          <span class="tl-title">Admin Operations, Trust &amp; Analytics (A-01 to A-25, E-67 to E-73)</span>
+          <span class="tl-duration">3 weeks</span>
+        </div>
+        <p class="tl-desc">Super admin portal, taxonomy editors, job moderation queue, trust &amp; safety investigations, revenue dashboard, audit logs, platform config, executive hiring analytics.</p>
+        <div class="tl-tags"><span class="tag tag-rose">32 screens</span><span class="tag tag-blue">Analytics</span><span class="tag tag-purple">Admin</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#14b8a6"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 10</span>
+          <span class="tl-title">React Native Mobile App (All 📱 Screens — iOS + Android)</span>
+          <span class="tl-duration">5 weeks</span>
+        </div>
+        <p class="tl-desc">React Native Expo app for all 28+ mobile-first screens: candidate review, scorecards, executive approvals, video pitch recorder, job browsing, push notifications, offers.</p>
+        <div class="tl-tags"><span class="tag tag-cyan">iOS + Android</span><span class="tag tag-purple">28+ screens</span><span class="tag tag-green">Push Notifications</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#22c55e"></div>
+        <div class="tl-header">
+          <span class="tl-phase">Phase 11</span>
+          <span class="tl-title">Billing, Security Hardening &amp; Launch</span>
+          <span class="tl-duration">2 weeks</span>
+        </div>
+        <p class="tl-desc">Stripe billing integration, quota metering, penetration testing, load testing, App Store and Play Store submission, production deployment, monitoring setup.</p>
+        <div class="tl-tags"><span class="tag tag-amber">Stripe</span><span class="tag tag-rose">Security</span><span class="tag tag-green">Launch</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 08 MVP -->
+<section id="mvp">
+  <div class="container">
+    <span class="section-tag">08 — MVP Strategy</span>
+    <h2>What to <span>Build First</span></h2>
+    <p class="section-lead">Two delivery options. Option A gets you to market with the full core value in 5–6 months. Option B is the complete platform.</p>
+    <div class="mvp-grid">
+      <div class="mvp-card mvp-a featured">
+        <div class="mvp-label">Option A — Web MVP First</div>
+        <div class="mvp-title">Core Platform Launch</div>
+        <div class="mvp-time">5–6 months</div>
+        <div class="mvp-time-sub">Phases 1–6 · Web only · ~3,800 hrs</div>
+        <ul class="mvp-list">
+          <li>Public marketing website (all 12 screens)</li>
+          <li>Full candidate profile + STAR storytelling studio</li>
+          <li>5-type assessment engine + percentile benchmarks</li>
+          <li>Employer Job DNA Studio + AI JD generation</li>
+          <li>Full ATS Kanban pipeline + candidate comparison</li>
+          <li>Interview scheduling + 1-min video pitch (web)</li>
+          <li>Stripe billing + employer subscriptions</li>
+          <li style="color:#818cf8">Mobile app added in Full Build (Phase 10)</li>
+        </ul>
+      </div>
+      <div class="mvp-card mvp-b">
+        <div class="mvp-label">Option B — Full Platform</div>
+        <div class="mvp-title">Complete Web + Mobile</div>
+        <div class="mvp-time">12–15 months</div>
+        <div class="mvp-time-sub">All 11 phases · All 236 screens · iOS + Android</div>
+        <ul class="mvp-list">
+          <li>Everything in Option A, plus:</li>
+          <li>Digital Vault + full verification + e-signature offers</li>
+          <li>Brand Arcade + challenge leaderboards + badges</li>
+          <li>Candidate portfolio gallery</li>
+          <li>Super Admin operations suite (all 25 screens)</li>
+          <li>Executive analytics + attrition prediction</li>
+          <li>React Native iOS + Android mobile apps</li>
+          <li>Vanity URLs + public profile sharing</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:20px 24px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:14px">
+      <p style="font-size:13px;color:#fcd34d;font-weight:700;margin-bottom:8px">Why These Are Real 2026 Timelines</p>
+      <p style="font-size:13px;color:#94a3b8">AI coding agents (Cursor, GitHub Copilot, Claude Code), pre-built component libraries (Shadcn UI, Radix), type-safe API layers (tRPC + Prisma), and boilerplate generators mean a single focused developer can ship screens 2–3x faster than traditional timelines. These timelines factor that in — they are not inflated.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 COSTS -->
+<section id="costs">
+  <div class="container">
+    <span class="section-tag">09 — Infrastructure Cost</span>
+    <h2>Monthly <span>Running Costs</span></h2>
+    <p class="section-lead">Third-party service bills to run the platform. Estimated at 3 tiers: beta launch, early growth, and scale. These are actual bills — not development costs.</p>
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid rgba(255,255,255,0.07)">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Purpose</th>
+            <th>Launch (~100 users)</th>
+            <th>Growth (~2,000 users)</th>
+            <th>Scale (~20,000 users)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cost-section-row"><td colspan="5">Hosting &amp; Compute</td></tr>
+          <tr><td>Vercel</td><td>Next.js hosting, edge CDN, previews</td><td class="cost-price">$20</td><td class="cost-price">$99</td><td class="cost-price">$400</td></tr>
+          <tr><td>AWS ECS Fargate</td><td>NestJS API containers, auto-scaling</td><td class="cost-price">$30</td><td class="cost-price">$120</td><td class="cost-price">$500</td></tr>
+          <tr><td>AWS RDS PostgreSQL</td><td>Primary managed database</td><td class="cost-price">$25</td><td class="cost-price">$80</td><td class="cost-price">$300</td></tr>
+          <tr><td>Redis (Upstash)</td><td>Cache, job queues, leaderboards</td><td class="cost-price">$10</td><td class="cost-price">$40</td><td class="cost-price">$150</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Storage &amp; Media</td></tr>
+          <tr><td>AWS S3 + CloudFront</td><td>File storage, video delivery CDN</td><td class="cost-price">$10</td><td class="cost-price">$50</td><td class="cost-price">$200</td></tr>
+          <tr><td>AWS MediaConvert</td><td>Video transcoding (HLS for 1-min pitches)</td><td class="cost-price">$5</td><td class="cost-price">$30</td><td class="cost-price">$120</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">AI &amp; Intelligence</td></tr>
+          <tr><td>OpenAI API</td><td>DNA matching, JD generation, AI story coach</td><td class="cost-price">$20</td><td class="cost-price">$150</td><td class="cost-price">$600</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Auth &amp; Security</td></tr>
+          <tr><td>Clerk (Authentication)</td><td>Multi-tenant auth, SSO, RBAC</td><td class="cost-price">$25</td><td class="cost-price">$99</td><td class="cost-price">$350</td></tr>
+          <tr><td>Cloudflare</td><td>CDN, WAF, DDoS protection, SSL</td><td class="cost-price">$20</td><td class="cost-price">$20</td><td class="cost-price">$200</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Mobile</td></tr>
+          <tr><td>Expo EAS Build</td><td>Mobile CI/CD, app builds, OTA updates</td><td class="cost-price">$29</td><td class="cost-price">$99</td><td class="cost-price">$299</td></tr>
+          <tr><td>Firebase (Push)</td><td>iOS + Android push notifications</td><td class="cost-price">$0</td><td class="cost-price">$0</td><td class="cost-price">$25</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Communication</td></tr>
+          <tr><td>Resend (Email)</td><td>Transactional emails — notifications, invites, offers</td><td class="cost-price">$20</td><td class="cost-price">$89</td><td class="cost-price">$280</td></tr>
+          <tr><td>Twilio SMS (optional)</td><td>Interview reminders via SMS</td><td class="cost-price">$10</td><td class="cost-price">$40</td><td class="cost-price">$150</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Monitoring &amp; Analytics</td></tr>
+          <tr><td>Sentry</td><td>Error tracking — web + mobile</td><td class="cost-price">$26</td><td class="cost-price">$80</td><td class="cost-price">$186</td></tr>
+          <tr><td>PostHog</td><td>Product analytics, funnel tracking, session replay</td><td class="cost-price">$0</td><td class="cost-price">$50</td><td class="cost-price">$200</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">Payments</td></tr>
+          <tr><td>Stripe</td><td>Subscription billing — 2.9% + 30¢ per transaction</td><td class="cost-price">~$50</td><td class="cost-price">~$300</td><td class="cost-price">~$2,000</td></tr>
+
+          <tr class="cost-section-row"><td colspan="5">App Stores (One-Time / Annual)</td></tr>
+          <tr><td>Apple Developer</td><td>iOS App Store — annual fee</td><td class="cost-price">$99/yr</td><td class="cost-price">$99/yr</td><td class="cost-price">$99/yr</td></tr>
+          <tr><td>Google Play</td><td>Android — one-time registration</td><td class="cost-price">$25 once</td><td class="cost-price">—</td><td class="cost-price">—</td></tr>
+
+          <tr class="cost-total">
+            <td colspan="2"><strong>Total Monthly Infrastructure</strong></td>
+            <td class="cost-price">~$300 / mo</td>
+            <td class="cost-price">~$1,400 / mo</td>
+            <td class="cost-price">~$5,960 / mo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cost-tiers">
+      <div class="cost-tier" style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2)">
+        <p style="font-size:12px;color:#818cf8;font-weight:700;margin-bottom:6px">Launch Stage</p>
+        <p style="font-size:28px;font-weight:900;color:#fff">~$300<span style="font-size:14px;color:#64748b">/mo</span></p>
+        <p style="font-size:12px;color:#64748b">Up to ~100 active users. Suitable for beta and early clients.</p>
+      </div>
+      <div class="cost-tier" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2)">
+        <p style="font-size:12px;color:#f59e0b;font-weight:700;margin-bottom:6px">Growth Stage</p>
+        <p style="font-size:28px;font-weight:900;color:#fff">~$1,400<span style="font-size:14px;color:#64748b">/mo</span></p>
+        <p style="font-size:12px;color:#64748b">2,000 active users, multiple employers, real ATS pipeline usage.</p>
+      </div>
+      <div class="cost-tier" style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2)">
+        <p style="font-size:12px;color:#10b981;font-weight:700;margin-bottom:6px">Scale Stage</p>
+        <p style="font-size:28px;font-weight:900;color:#fff">~$6,000<span style="font-size:14px;color:#64748b">/mo</span></p>
+        <p style="font-size:12px;color:#64748b">20,000+ users, heavy AI usage, high video traffic, multi-region.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px">
+      <p style="font-size:12px;color:#64748b"><strong style="color:#94a3b8">Note on verification costs:</strong> Third-party verification APIs (OCR, background check) like Persona or Checkr charge per-transaction — typically $1–5 per candidate verification. These scale with usage volume and are not included as fixed monthly costs. Stripe fees also vary directly with revenue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:8px">Rizza Platform</p>
+    <p>236 Screens · 4 User Types · Web + iOS + Android · AI-Assisted Development · 2026</p>
+    <p style="margin-top:16px;color:#334155">Architecture analysis based on FigJam: Rizza Platform — 4 User Types Full Screen Flow</p>
+  </div>
+</footer>
+</body>
+</html>
