@@ -188,40 +188,41 @@ function OverviewPage({user,patch,notify,navigate}:{user:DemoUser;patch:(fn:(u:D
   <ProfileHero user={user} patch={patch} notify={notify}/>
   <ProfileTabs active="Overview"/>
 
+  {/* Quick Feature Studio Tiles (Full Width Banner Strip) */}
+  <div className="overview-studios-strip">
+   <Link href="/story" className="panel studio-tile">
+    <div className="studio-top">
+     <span className="studio-icon s-ai"><BookOpen size={17}/></span>
+     <span className="badge-pill">AI Assisted</span>
+    </div>
+    <strong>STAR Storyteller Studio</strong>
+    <p>2 verified narrative case studies published to your Life Page.</p>
+    <span className="studio-link">Open Storyteller <ArrowRight size={13}/></span>
+   </Link>
+
+   <Link href="/benchmark" className="panel studio-tile">
+    <div className="studio-top">
+     <span className="studio-icon s-bench"><Target size={17}/></span>
+     <span className="badge-pill">Top 8%</span>
+    </div>
+    <strong>Benchmark Studio</strong>
+    <p>Composite score 87/100 · 92nd percentile worldwide.</p>
+    <span className="studio-link">View diagnostics <ArrowRight size={13}/></span>
+   </Link>
+
+   <Link href="/arcade" className="panel studio-tile">
+    <div className="studio-top">
+     <span className="studio-icon s-xp"><Trophy size={17}/></span>
+     <span className="badge-pill">Rank #4</span>
+    </div>
+    <strong>Brand Arcade Jam</strong>
+    <p>Linear $5,000 Interaction Challenge active now.</p>
+    <span className="studio-link">Explore challenges <ArrowRight size={13}/></span>
+   </Link>
+  </div>
+
   <div className="overview-layout">
    <div className="overview-main">
-    {/* Quick Feature Studio Tiles */}
-    <div className="overview-studios-strip">
-     <Link href="/story" className="panel studio-tile">
-      <div className="studio-top">
-       <span className="studio-icon s-ai"><BookOpen size={17}/></span>
-       <span className="badge-pill">AI Assisted</span>
-      </div>
-      <strong>STAR Storyteller Studio</strong>
-      <p>2 verified narrative case studies published to your Life Page.</p>
-      <span className="studio-link">Open Storyteller <ArrowRight size={13}/></span>
-     </Link>
-
-     <Link href="/benchmark" className="panel studio-tile">
-      <div className="studio-top">
-       <span className="studio-icon s-bench"><Target size={17}/></span>
-       <span className="badge-pill">Top 8%</span>
-      </div>
-      <strong>Benchmark Studio</strong>
-      <p>Composite score 87/100 · 92nd percentile worldwide.</p>
-      <span className="studio-link">View diagnostics <ArrowRight size={13}/></span>
-     </Link>
-
-     <Link href="/arcade" className="panel studio-tile">
-      <div className="studio-top">
-       <span className="studio-icon s-xp"><Trophy size={17}/></span>
-       <span className="badge-pill">Rank #4</span>
-      </div>
-      <strong>Brand Arcade Jam</strong>
-      <p>Linear $5,000 Interaction Challenge active now.</p>
-      <span className="studio-link">Explore challenges <ArrowRight size={13}/></span>
-     </Link>
-    </div>
 
     <div className="section-intro">
      <div>
